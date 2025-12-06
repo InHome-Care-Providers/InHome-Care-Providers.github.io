@@ -2,21 +2,24 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>In-Home Therapy Services | Soft Launch Interest Form</title>
+  <title>InHome Care Providers – In-Home Therapy Interest</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Share your interest in in-home therapy services and help us shape our service offerings." />
+  <meta
+    name="description"
+    content="Soft launch interest form for in-home therapy and supportive care services."
+  />
+
   <style>
     :root {
-      --color-primary: #0078B5;       /* Soft Cascade Blue */
-      --color-secondary: #00A7A0;     /* Gentle Teal */
-      --color-bg-light: #F7F9FA;      /* Warm Off-White */
-      --color-text-medium: #6E7784;   /* Soft Slate Gray */
-      --color-text-dark: #2F3A44;     /* Charcoal Gray */
-      --color-accent: #FF6B5C;        /* Warm Coral */
-      --color-accent-2: #F5B25C;      /* Golden Sand */
-      --radius-lg: 12px;
-      --radius-xl: 18px;
-      --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.06);
+      --color-primary: #0078B5;      /* Soft Cascade Blue */
+      --color-secondary: #00A7A0;    /* Gentle Teal */
+      --color-bg-light: #F7F9FA;     /* Warm Off-White */
+      --color-text-medium: #6E7784;  /* Soft Slate Gray */
+      --color-text-dark: #2F3A44;    /* Charcoal Gray */
+      --color-accent: #FF6B5C;       /* Warm Coral */
+      --color-accent-2: #F5B25C;     /* Golden Sand */
+      --shadow-soft: 0 18px 40px rgba(15, 23, 42, 0.12);
+      --radius-xl: 1.5rem;
     }
 
     * {
@@ -25,8 +28,9 @@
 
     body {
       margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background-color: var(--color-bg-light);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      background: var(--color-bg-light);
       color: var(--color-text-medium);
       line-height: 1.6;
     }
@@ -41,241 +45,274 @@
     }
 
     header {
-      background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
-      color: white;
-      padding: 18px 0;
-    }
-
-    .container {
-      width: 100%;
-      max-width: 1080px;
-      margin: 0 auto;
-      padding: 0 16px;
+      background: #ffffff;
+      border-bottom: 1px solid rgba(110, 119, 132, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 10;
     }
 
     .nav {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0.75rem 1.25rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 12px;
+      gap: 1rem;
     }
 
     .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .brand-logo {
+      width: 40px;
+      height: 40px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 20%, var(--color-secondary), var(--color-primary));
+    }
+
+    .brand-name {
       font-weight: 700;
       font-size: 1.1rem;
-      letter-spacing: 0.03em;
-      text-transform: uppercase;
+      color: var(--color-text-dark);
     }
 
     .nav-links {
       display: flex;
-      gap: 16px;
-      font-size: 0.9rem;
+      gap: 1rem;
+      font-size: 0.95rem;
     }
 
     .nav-links a {
-      color: rgba(255, 255, 255, 0.9);
+      color: var(--color-text-medium);
+      font-weight: 500;
     }
 
     .nav-links a:hover {
-      color: #ffffff;
+      color: var(--color-primary);
     }
+
+    main {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 1.5rem 1.25rem 3rem;
+    }
+
+    /* Hero */
 
     .hero {
-      padding: 40px 0 36px;
-    }
-
-    .hero-inner {
       display: grid;
-      grid-template-columns: minmax(0, 3fr) minmax(0, 2.7fr);
-      gap: 32px;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 2.5rem;
       align-items: center;
+      margin-top: 1.5rem;
+      margin-bottom: 2.5rem;
     }
 
-    .hero h1 {
-      margin: 0 0 12px;
-      font-size: clamp(1.9rem, 3vw, 2.4rem);
-      color: #ffffff;
+    .hero-heading {
+      font-size: clamp(2.1rem, 4vw, 2.7rem);
+      line-height: 1.15;
+      color: var(--color-text-dark);
+      margin-bottom: 0.75rem;
     }
 
-    .hero p {
-      margin: 0 0 24px;
-      color: rgba(255, 255, 255, 0.9);
+    .hero-highlight {
+      color: var(--color-primary);
     }
 
-    .hero-highlights {
+    .hero-subtitle {
+      font-size: 1rem;
+      max-width: 34rem;
+    }
+
+    .hero-badges {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 24px;
+      gap: 0.5rem;
+      margin: 1rem 0 1.25rem;
     }
 
-    .hero-pill {
-      background: rgba(255, 255, 255, 0.16);
-      border-radius: 999px;
-      padding: 6px 12px;
+    .hero-badge {
       font-size: 0.8rem;
+      padding: 0.3rem 0.7rem;
+      border-radius: 999px;
+      background: rgba(0, 167, 160, 0.09);
+      color: var(--color-secondary);
+      font-weight: 600;
     }
 
     .hero-cta {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 0.75rem;
       align-items: center;
     }
 
     .btn-primary {
-      border: none;
-      cursor: pointer;
-      padding: 10px 20px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.75rem 1.4rem;
       border-radius: 999px;
-      background-color: var(--color-accent);
+      border: none;
+      background: var(--color-accent);
       color: #ffffff;
       font-weight: 600;
       font-size: 0.95rem;
+      cursor: pointer;
       box-shadow: var(--shadow-soft);
-      transition: transform 0.06s ease, box-shadow 0.06s ease, background-color 0.06s ease;
+      transition: transform 0.08s ease, box-shadow 0.08s ease,
+        background 0.08s ease;
     }
 
     .btn-primary:hover {
       transform: translateY(-1px);
-      background-color: #ff5a48;
-      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+      box-shadow: 0 16px 30px rgba(15, 23, 42, 0.18);
+      background: #ff5a4a;
     }
 
     .btn-secondary {
+      padding: 0.7rem 1.2rem;
       border-radius: 999px;
-      padding: 9px 18px;
-      border: 1px solid rgba(255, 255, 255, 0.7);
-      background: transparent;
-      color: #ffffff;
+      border: 1px solid rgba(110, 119, 132, 0.2);
+      background: #ffffff;
+      color: var(--color-text-medium);
       font-size: 0.9rem;
+      font-weight: 500;
       cursor: pointer;
     }
 
-    .badge-soft {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
+    .hero-note {
       font-size: 0.8rem;
-      background-color: rgba(255, 255, 255, 0.14);
-      color: #ffffff;
-      padding: 6px 10px;
-      border-radius: 999px;
-      margin-bottom: 10px;
-    }
-
-    .hero-card {
-      background: #ffffff;
-      border-radius: var(--radius-xl);
-      padding: 18px 18px 10px;
-      box-shadow: var(--shadow-soft);
       color: var(--color-text-medium);
+      margin-top: 0.75rem;
     }
 
-    .hero-card h2 {
-      margin: 0 0 8px;
-      font-size: 1.1rem;
+    .hero-panel {
+      background: linear-gradient(
+          140deg,
+          rgba(0, 120, 181, 0.12),
+          rgba(0, 167, 160, 0.18)
+        ),
+        #ffffff;
+      border-radius: var(--radius-xl);
+      padding: 1.6rem 1.5rem;
+      box-shadow: var(--shadow-soft);
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .hero-panel-title {
+      font-size: 1.05rem;
+      font-weight: 700;
       color: var(--color-text-dark);
     }
 
-    .hero-card p {
-      margin: 0 0 14px;
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.8rem;
+      margin-top: 0.75rem;
+    }
+
+    .hero-stat {
+      border-radius: 1rem;
+      padding: 0.6rem 0.7rem;
+      background: rgba(255, 255, 255, 0.9);
+      font-size: 0.8rem;
+    }
+
+    .hero-stat-label {
+      font-weight: 500;
+      color: var(--color-text-medium);
+    }
+
+    .hero-stat-value {
+      font-weight: 700;
+      color: var(--color-primary);
       font-size: 0.9rem;
     }
 
-    .hero-card-list {
-      list-style: none;
-      padding-left: 0;
-      margin: 0;
-      font-size: 0.85rem;
-    }
+    /* Sections */
 
-    .hero-card-list li {
-      margin-bottom: 4px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .hero-card-tag {
-      display: inline-block;
-      font-size: 0.78rem;
-      background-color: rgba(0, 167, 160, 0.09);
-      padding: 4px 8px;
-      border-radius: 999px;
-      color: var(--color-secondary);
-      margin-top: 8px;
-    }
-
-    main {
-      padding: 32px 0 40px;
-    }
-
-    .section {
-      margin-bottom: 40px;
+    section {
+      margin-bottom: 2.5rem;
     }
 
     .section-heading {
       font-size: 1.4rem;
-      margin-bottom: 4px;
       color: var(--color-text-dark);
+      margin-bottom: 0.75rem;
     }
 
     .section-subtitle {
       font-size: 0.95rem;
-      margin-bottom: 20px;
+      max-width: 40rem;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 1.2rem;
+      margin-top: 1.5rem;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 1.25rem;
+      padding: 1rem 1rem 1.15rem;
+      box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
+      border: 1px solid rgba(110, 119, 132, 0.06);
+    }
+
+    .card-title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--color-text-dark);
+      margin-bottom: 0.25rem;
+    }
+
+    .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      margin-top: 0.5rem;
+    }
+
+    .chip {
+      font-size: 0.75rem;
+      padding: 0.2rem 0.55rem;
+      border-radius: 999px;
+      background: rgba(0, 120, 181, 0.06);
       color: var(--color-text-medium);
     }
 
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 20px;
-    }
-
-    .feature {
-      background: #ffffff;
-      padding: 16px 16px 14px;
-      border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-soft);
-      font-size: 0.9rem;
-    }
-
-    .feature-tag {
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--color-secondary);
-      margin-bottom: 4px;
-    }
-
-    .feature h3 {
-      margin: 0 0 6px;
-      font-size: 1rem;
-      color: var(--color-text-dark);
-    }
-
-    .feature p {
-      margin: 0;
-    }
+    /* Form */
 
     .form-section {
       background: #ffffff;
       border-radius: var(--radius-xl);
+      padding: 1.8rem 1.4rem 1.6rem;
       box-shadow: var(--shadow-soft);
-      padding: 22px 18px 20px;
+      border: 1px solid rgba(110, 119, 132, 0.07);
     }
 
     form {
       display: grid;
-      gap: 14px;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 1.1rem;
+      margin-top: 1.2rem;
     }
 
-    .form-row {
+    .form-grid-2 {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 0.9rem 1rem;
     }
 
     label {
@@ -283,7 +320,13 @@
       font-size: 0.85rem;
       font-weight: 600;
       color: var(--color-text-dark);
-      margin-bottom: 4px;
+      margin-bottom: 0.25rem;
+    }
+
+    .hint {
+      font-size: 0.78rem;
+      color: var(--color-text-medium);
+      margin-top: 0.15rem;
     }
 
     input[type="text"],
@@ -292,18 +335,13 @@
     select,
     textarea {
       width: 100%;
-      padding: 8px 10px;
-      border-radius: 8px;
-      border: 1px solid rgba(110, 119, 132, 0.38);
+      padding: 0.6rem 0.65rem;
+      border-radius: 0.7rem;
+      border: 1px solid rgba(110, 119, 132, 0.35);
       font-size: 0.9rem;
       font-family: inherit;
       color: var(--color-text-dark);
-      background-color: #ffffff;
-    }
-
-    textarea {
-      min-height: 80px;
-      resize: vertical;
+      background: #ffffff;
     }
 
     input:focus,
@@ -311,362 +349,462 @@
     textarea:focus {
       outline: 2px solid rgba(0, 120, 181, 0.35);
       outline-offset: 1px;
-      border-color: var(--color-primary);
+      border-color: rgba(0, 120, 181, 0.6);
     }
 
-    .checkbox-group,
-    .radio-group {
-      display: grid;
-      gap: 4px;
-      font-size: 0.85rem;
+    textarea {
+      min-height: 80px;
+      resize: vertical;
     }
 
-    .checkbox-inline {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 0.85rem;
-      margin-right: 12px;
-      margin-bottom: 6px;
-    }
-
-    .helper-text {
-      font-size: 0.78rem;
-      color: var(--color-text-medium);
-      margin-top: 2px;
-    }
-
-    .notice {
-      background-color: rgba(245, 178, 92, 0.12);
-      border-radius: 8px;
-      padding: 8px 10px;
-      font-size: 0.8rem;
-      color: var(--color-text-dark);
-      border-left: 3px solid var(--color-accent-2);
-      margin-bottom: 6px;
-    }
-
-    .consent {
-      font-size: 0.8rem;
-      color: var(--color-text-medium);
-    }
-
-    .consent label {
-      font-weight: 500;
-      color: var(--color-text-medium);
-      margin-bottom: 0;
-    }
-
-    .consent input {
-      margin-right: 6px;
-    }
-
-    .submit-row {
+    .option-group {
       display: flex;
-      align-items: center;
-      justify-content: space-between;
       flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 4px;
+      gap: 0.35rem 0.9rem;
+      font-size: 0.86rem;
     }
 
-    .submit-row small {
-      font-size: 0.78rem;
+    .option-group label {
+      font-weight: 500;
+      margin-bottom: 0;
       color: var(--color-text-medium);
+    }
+
+    .option-group input {
+      margin-right: 0.35rem;
+    }
+
+    .required {
+      color: var(--color-accent);
+      margin-left: 0.05rem;
+    }
+
+    .form-footer {
+      margin-top: 1rem;
+      font-size: 0.8rem;
+      color: var(--color-text-medium);
+    }
+
+    .disclaimer {
+      margin-top: 0.5rem;
+      padding: 0.7rem 0.8rem;
+      border-radius: 0.8rem;
+      background: rgba(245, 178, 92, 0.09);
+      border: 1px dashed rgba(245, 178, 92, 0.7);
+      font-size: 0.78rem;
+      color: var(--color-text-dark);
+    }
+
+    .btn-submit {
+      margin-top: 0.3rem;
+      align-self: flex-start;
+      background: linear-gradient(
+        135deg,
+        var(--color-accent),
+        var(--color-accent-2)
+      );
     }
 
     footer {
-      border-top: 1px solid rgba(110, 119, 132, 0.22);
-      padding: 14px 0 18px;
+      border-top: 1px solid rgba(110, 119, 132, 0.12);
+      padding: 1.2rem 1.25rem 1.6rem;
       font-size: 0.8rem;
       color: var(--color-text-medium);
-      background-color: #ffffff;
     }
 
-    footer .container {
+    footer .footer-inner {
+      max-width: 1080px;
+      margin: 0 auto;
       display: flex;
-      justify-content: space-between;
-      align-items: center;
       flex-wrap: wrap;
-      gap: 10px;
+      justify-content: space-between;
+      gap: 0.5rem;
     }
 
-    @media (max-width: 860px) {
-      .hero-inner {
-        grid-template-columns: minmax(0, 1fr);
-      }
-    }
+    /* Responsive */
 
-    @media (max-width: 720px) {
-      .features-grid {
+    @media (max-width: 768px) {
+      .hero {
         grid-template-columns: minmax(0, 1fr);
       }
 
-      .form-row {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
-      .nav {
-        flex-direction: column;
-        align-items: flex-start;
+      .hero-panel {
+        order: -1;
       }
 
       .nav-links {
-        flex-wrap: wrap;
+        display: none;
       }
     }
   </style>
 </head>
 <body>
   <header>
-    <div class="container nav">
-      <div class="brand">In-Home Care Providers</div>
+    <div class="nav">
+      <div class="brand">
+        <div class="brand-logo" aria-hidden="true"></div>
+        <div class="brand-name">InHome Care Providers</div>
+      </div>
       <nav class="nav-links">
         <a href="#services">Services</a>
-        <a href="#form">Interest Form</a>
-        <a href="#about">About</a>
+        <a href="#how-it-works">How it works</a>
+        <a href="#interest-form">Tell us what you need</a>
       </nav>
-    </div>
-
-    <div class="container hero">
-      <div class="hero-inner">
-        <div>
-          <div class="badge-soft">
-            <span>Soft launch</span> • <span>Help shape our services</span>
-          </div>
-          <h1>In-home therapy that meets you where you are.</h1>
-          <p>
-            We’re building an in-home therapy program centered around comfort, consistency,
-            and dignity. Share what you or your loved one needs so we can design services
-            that truly fit your home and your life.
-          </p>
-
-          <div class="hero-highlights">
-            <div class="hero-pill">✔ In-home and telehealth options</div>
-            <div class="hero-pill">✔ Medicaid-friendly design</div>
-            <div class="hero-pill">✔ Family-centered planning</div>
-          </div>
-
-          <div class="hero-cta">
-            <button class="btn-primary" onclick="document.getElementById('interest-form').scrollIntoView({ behavior: 'smooth' });">
-              Tell us what you need
-            </button>
-            <button class="btn-secondary" onclick="document.getElementById('services').scrollIntoView({ behavior: 'smooth' });">
-              Learn about service areas
-            </button>
-          </div>
-        </div>
-
-        <aside class="hero-card" aria-label="Summary of services">
-          <h2>What kinds of support?</h2>
-          <p>We’re gauging demand for in-home and community-based services such as:</p>
-          <ul class="hero-card-list">
-            <li>• Physical &amp; occupational therapy</li>
-            <li>• Speech &amp; language support</li>
-            <li>• Behavioral &amp; emotional support</li>
-            <li>• Daily living &amp; caregiver coaching</li>
-          </ul>
-          <div class="hero-card-tag">Your answers help us decide where to launch first.</div>
-        </aside>
-      </div>
     </div>
   </header>
 
   <main>
-    <div class="container">
-      <section id="services" class="section">
-        <h2 class="section-heading">What we’re planning to offer</h2>
-        <p class="section-subtitle">
-          Final services will depend on community interest. Your feedback here directly shapes
-          our staffing, scheduling, and which therapies launch first.
+    <section class="hero" id="top">
+      <div>
+        <h1 class="hero-heading">
+          Help us shape <span class="hero-highlight">in-home therapy</span> in your community.
+        </h1>
+        <p class="hero-subtitle">
+          We’re preparing to launch in-home therapy and supportive care services. Share what you need most so we can
+          build a program that truly fits real families—right where you live.
         </p>
 
-        <div class="features-grid">
-          <div class="feature">
-            <div class="feature-tag">In-home visits</div>
-            <h3>Therapy in your familiar space</h3>
-            <p>
-              Sessions happen where life happens—your living room, kitchen, or bedroom. That
-              gives therapists a more accurate picture of daily routines and real-world challenges.
-            </p>
+        <div class="hero-badges">
+          <span class="hero-badge">In-home therapy</span>
+          <span class="hero-badge">Medicaid & Medicare friendly</span>
+          <span class="hero-badge">Soft launch interest only</span>
+        </div>
+
+        <div class="hero-cta">
+          <a href="#interest-form" class="btn-primary">Tell us what you need</a>
+          <button type="button" class="btn-secondary" onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'});">
+            See example services
+          </button>
+        </div>
+
+        <p class="hero-note">
+          No commitment required. Your answers simply help us understand what services, schedules, and locations to
+          prioritize first.
+        </p>
+      </div>
+
+      <aside class="hero-panel">
+        <div class="hero-panel-title">What your answers help us decide</div>
+        <p style="font-size:0.85rem; margin:0;">
+          We’ll use your input to plan:
+        </p>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <div class="hero-stat-label">Service mix</div>
+            <div class="hero-stat-value">PT · OT · Speech · Behavioral</div>
           </div>
-          <div class="feature">
-            <div class="feature-tag">Family-centered</div>
-            <h3>Support for clients and caregivers</h3>
-            <p>
-              We don’t just work with the individual. We coach family members and caregivers with
-              practical, repeatable strategies they can use between sessions.
-            </p>
+          <div class="hero-stat">
+            <div class="hero-stat-label">Coverage areas</div>
+            <div class="hero-stat-value">By ZIP & county</div>
           </div>
-          <div class="feature">
-            <div class="feature-tag">Accessible care</div>
-            <h3>Built with coverage in mind</h3>
-            <p>
-              Our model is being designed to work alongside Medicaid and other coverage options,
-              with transparent communication about eligibility and next steps.
-            </p>
+          <div class="hero-stat">
+            <div class="hero-stat-label">Visit times</div>
+            <div class="hero-stat-value">Days · Evenings · Weekends</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-label">Payer options</div>
+            <div class="hero-stat-value">Medicaid · Medicare · Private</div>
           </div>
         </div>
-      </section>
+      </aside>
+    </section>
 
-      <section id="form" class="section">
-        <div id="interest-form" class="form-section">
-          <h2 class="section-heading">Share your needs</h2>
-          <p class="section-subtitle">
-            This is an interest form, not a formal intake. Please avoid sharing sensitive
-            medical details—just tell us the basics so we know how to serve your area best.
+    <section id="services">
+      <h2 class="section-heading">What kinds of services are you interested in?</h2>
+      <p class="section-subtitle">
+        Below are example services we’re planning to offer. You’ll be able to select the ones that matter to you
+        in the form.
+      </p>
+
+      <div class="cards">
+        <article class="card">
+          <h3 class="card-title">Therapy at home</h3>
+          <p>
+            Physical, occupational, and speech therapy provided in your home to support mobility, daily living, and
+            communication.
           </p>
+          <div class="chip-row">
+            <span class="chip">Physical Therapy (PT)</span>
+            <span class="chip">Occupational Therapy (OT)</span>
+            <span class="chip">Speech / Language</span>
+          </div>
+        </article>
 
-          <div class="notice">
-            This form does not create a patient-provider relationship and is not for emergencies.
-            If you are experiencing a medical or mental health emergency, call 911 or your local
-            emergency services.
+        <article class="card">
+          <h3 class="card-title">Behavioral & mental health support</h3>
+          <p>
+            In-home behavioral services and counseling focused on daily routines, behavior plans, and caregiver support.
+          </p>
+          <div class="chip-row">
+            <span class="chip">Behavioral / ABA</span>
+            <span class="chip">Counseling</span>
+            <span class="chip">Caregiver coaching</span>
+          </div>
+        </article>
+
+        <article class="card">
+          <h3 class="card-title">Nursing & care coordination</h3>
+          <p>
+            Clinical visits and care coordination to help manage complex care, medications, and benefits at home.
+          </p>
+          <div class="chip-row">
+            <span class="chip">Skilled nursing</span>
+            <span class="chip">Medical social work</span>
+            <span class="chip">Case management</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="how-it-works">
+      <h2 class="section-heading">How this soft launch works</h2>
+      <p class="section-subtitle">
+        Right now, we’re listening. We’ll review responses by geography, service type, and payer to decide where
+        to open first and which services to prioritize.
+      </p>
+
+      <div class="cards">
+        <article class="card">
+          <h3 class="card-title">1. Tell us what you need</h3>
+          <p>
+            Use the short form below to share who you’re supporting, where you live, and which services would help
+            most.
+          </p>
+        </article>
+        <article class="card">
+          <h3 class="card-title">2. We map the demand</h3>
+          <p>
+            We combine responses (no public sharing of individual details) to plan service areas, staffing, and
+            scheduling.
+          </p>
+        </article>
+        <article class="card">
+          <h3 class="card-title">3. We reach out as we launch</h3>
+          <p>
+            If we’re able to serve your area and needs, we’ll contact you with next steps once we’re ready to accept
+            referrals.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section id="interest-form">
+      <div class="form-section">
+        <h2 class="section-heading">Tell us what you need most</h2>
+        <p class="section-subtitle">
+          This form is for planning purposes only and is <strong>not</strong> an intake form. Please avoid sharing
+          diagnoses or very sensitive medical details.
+        </p>
+
+        <form action="#" method="post">
+          <!-- Who are you -->
+          <div>
+            <label>Who are you completing this form for?<span class="required">*</span></label>
+            <div class="option-group">
+              <label><input type="radio" name="who_for" value="self" required /> Myself</label>
+              <label><input type="radio" name="who_for" value="family" /> A family member</label>
+              <label><input type="radio" name="who_for" value="case_manager" /> Case manager / care coordinator</label>
+              <label><input type="radio" name="who_for" value="provider" /> Healthcare provider</label>
+              <label><input type="radio" name="who_for" value="other" /> Other</label>
+            </div>
           </div>
 
-          <!-- TODO: Replace action with your form handling endpoint (e.g., Formspree/Basin/custom API) -->
-          <form method="post" action="#">
-            <!-- A. Contact details -->
-            <div class="form-row">
-              <div>
-                <label for="name">Your name *</label>
-                <input id="name" name="name" type="text" required />
-              </div>
-              <div>
-                <label for="relationship">Your relationship to the client *</label>
-                <select id="relationship" name="relationship" required>
-                  <option value="">Please choose…</option>
-                  <option value="self">Self</option>
-                  <option value="parent_guardian">Parent / Guardian</option>
-                  <option value="spouse_partner">Spouse / Partner</option>
-                  <option value="family_member">Family member</option>
-                  <option value="other">Other</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="form-row">
-              <div>
-                <label for="email">Email address *</label>
-                <input id="email" name="email" type="email" required />
-              </div>
-              <div>
-                <label for="phone">Mobile phone (optional)</label>
-                <input id="phone" name="phone" type="tel" />
-                <div class="helper-text">We’ll only use this to follow up about services.</div>
-              </div>
-            </div>
-
-            <div class="form-row">
-              <div>
-                <label for="contact-preference">Preferred contact method *</label>
-                <select id="contact-preference" name="contact_preference" required>
-                  <option value="">Please choose…</option>
-                  <option value="phone">Phone call</option>
-                  <option value="text">Text message</option>
-                  <option value="email">Email</option>
-                  <option value="no_preference">No preference</option>
-                </select>
-              </div>
-              <div>
-                <label for="language">Primary language (optional)</label>
-                <input id="language" name="language" type="text" placeholder="e.g., English, Spanish" />
-              </div>
-            </div>
-
-            <!-- B. Location -->
-            <div class="form-row">
-              <div>
-                <label for="city">City *</label>
-                <input id="city" name="city" type="text" required />
-              </div>
-              <div>
-                <label for="zip">ZIP code *</label>
-                <input id="zip" name="zip" type="text" required />
-              </div>
-            </div>
-
-            <!-- C. Client profile -->
-            <div class="form-row">
-              <div>
-                <label for="age-group">Age group of client *</label>
-                <select id="age-group" name="age_group" required>
-                  <option value="">Please choose…</option>
-                  <option value="0_3">0–3 years</option>
-                  <option value="3_12">3–12 years</option>
-                  <option value="13_17">13–17 years</option>
-                  <option value="18_64">18–64 years</option>
-                  <option value="65_plus">65+ years</option>
-                </select>
-              </div>
-              <div>
-                <label for="access-notes">Mobility / access considerations (optional)</label>
-                <input id="access-notes" name="access_notes" type="text" placeholder="e.g., wheelchair user, stairs, etc." />
-              </div>
-            </div>
-
-            <!-- D. Services -->
+          <div class="form-grid-2">
             <div>
-              <label>What kinds of services are you interested in? *</label>
-              <div class="checkbox-group">
-                <label class="checkbox-inline">
-                  <input type="checkbox" name="services[]" value="pt" /> Physical therapy (PT)
-                </label>
-                <label class="checkbox-inline">
-                  <input type="checkbox" name="services[]" value="ot" /> Occupational therapy (OT)
-                </label>
-                <label class="checkbox-inline">
-                  <input type="checkbox" name="services[]" value="speech" /> Speech / language therapy
-                </label>
-                <label class="checkbox-inline">
-                  <input type="checkbox" name="services[]" value="behavioral" /> Behavioral / emotional support
-                </label>
-                <label class="checkbox-inline">
-                  <input type="checkbox" name="services[]" value="caregiver" /> Caregiver coaching / daily living skills
-                </label>
-                <label class="checkbox-inline">
-                  <input type="checkbox" name="services[]" value="not_sure" /> Not sure / need guidance
-                </label>
-              </div>
-              <div class="helper-text">
-                This helps us understand which disciplines to bring on first.
-              </div>
-            </div>
-
-            <!-- E. Visit logistics -->
-            <div class="form-row">
-              <div>
-                <label for="visit-type">Visit type *</label>
-                <select id="visit-type" name="visit_type" required>
-                  <option value="">Please choose…</option>
-                  <option value="in_home">In-home visits</option>
-                  <option value="telehealth">Telehealth / virtual</option>
-                  <option value="hybrid">Combination of in-home and virtual</option>
-                  <option value="unsure">Not sure yet</option>
-                </select>
-              </div>
-              <div>
-                <label for="start-timeframe">When are you hoping to start? *</label>
-                <select id="start-timeframe" name="start_timeframe" required>
-                  <option value="">Please choose…</option>
-                  <option value="asap">As soon as possible</option>
-                  <option value="1_2_weeks">Within 1–2 weeks</option>
-                  <option value="1_month">Within a month</option>
-                  <option value="exploring">Just exploring options right now</option>
-                </select>
-              </div>
+              <label for="age_group">Age group of the person needing services<span class="required">*</span></label>
+              <select id="age_group" name="age_group" required>
+                <option value="">Please select</option>
+                <option value="0-5">0–5 (early childhood)</option>
+                <option value="6-12">6–12 (child)</option>
+                <option value="13-17">13–17 (teen)</option>
+                <option value="18-64">18–64 (adult)</option>
+                <option value="65+">65+ (older adult)</option>
+              </select>
             </div>
 
             <div>
-              <label>Preferred days &amp; times (check all that apply)</label>
-              <div class="helper-text">
-                This doesn’t lock anything in—it simply helps us plan staffing.
+              <label for="zip">Home ZIP code<span class="required">*</span></label>
+              <input type="text" id="zip" name="zip" required />
+              <div class="hint">We’ll use this to understand coverage areas.</div>
+            </div>
+          </div>
+
+          <div class="form-grid-2">
+            <div>
+              <label for="city">City / County (optional)</label>
+              <input type="text" id="city" name="city" />
+            </div>
+            <div>
+              <label for="state">State (optional)</label>
+              <input type="text" id="state" name="state" />
+            </div>
+          </div>
+
+          <!-- Services -->
+          <div>
+            <label>Which in-home services would be most helpful?<span class="required">*</span></label>
+            <div class="option-group">
+              <label><input type="checkbox" name="services" value="pt" required /> Physical Therapy (PT)</label>
+              <label><input type="checkbox" name="services" value="ot" /> Occupational Therapy (OT)</label>
+              <label><input type="checkbox" name="services" value="speech" /> Speech / Language Therapy</label>
+              <label><input type="checkbox" name="services" value="behavioral" /> Behavioral / ABA services</label>
+              <label><input type="checkbox" name="services" value="counseling" /> Mental health counseling</label>
+              <label><input type="checkbox" name="services" value="nursing" /> Skilled nursing</label>
+              <label><input type="checkbox" name="services" value="social_work" /> Medical social work / case management</label>
+              <label><input type="checkbox" name="services" value="caregiver_training" /> Caregiver training / education</label>
+            </div>
+            <div class="hint">Choose all that apply.</div>
+          </div>
+
+          <!-- Timing & coverage -->
+          <div class="form-grid-2">
+            <div>
+              <label for="timeline">How soon are you hoping to start services?<span class="required">*</span></label>
+              <select id="timeline" name="timeline" required>
+                <option value="">Please select</option>
+                <option value="asap">As soon as possible</option>
+                <option value="1-2-weeks">Within 1–2 weeks</option>
+                <option value="1-2-months">Within 1–2 months</option>
+                <option value="exploring">Just exploring options / not sure yet</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="payer">How do you expect to pay for services?<span class="required">*</span></label>
+              <select id="payer" name="payer" required>
+                <option value="">Please select</option>
+                <option value="medicaid">Medicaid</option>
+                <option value="medicare">Medicare</option>
+                <option value="private_insurance">Private insurance</option>
+                <option value="private_pay">Private pay</option>
+                <option value="not_sure">Not sure yet</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label for="plan_name">Insurance plan name (optional)</label>
+            <input type="text" id="plan_name" name="plan_name" />
+          </div>
+
+          <!-- Visit preferences -->
+          <div>
+            <label>Preferred days / times for visits (if applicable)</label>
+            <div class="option-group">
+              <label><input type="checkbox" name="times" value="weekday_morning" /> Weekdays – mornings</label>
+              <label><input type="checkbox" name="times" value="weekday_afternoon" /> Weekdays – afternoons</label>
+              <label><input type="checkbox" name="times" value="weekday_evening" /> Weekdays – evenings</label>
+              <label><input type="checkbox" name="times" value="weekends" /> Weekends</label>
+            </div>
+          </div>
+
+          <!-- Home & access -->
+          <div class="form-grid-2">
+            <div>
+              <label>Home access / mobility (optional)</label>
+              <div class="option-group">
+                <label><input type="checkbox" name="access" value="stairs" /> Stairs to enter home</label>
+                <label><input type="checkbox" name="access" value="elevator" /> Elevator available</label>
+                <label><input type="checkbox" name="access" value="single_level" /> No stairs / single level</label>
               </div>
-              <div class="checkbox-group">
-                <div>
-                  <strong>Days:</strong>
-                  <label class="checkbox-inline"><input type="checkbox" name="days[]" value="mon" /> Mon</label>
-                  <label class="checkbox-inline"><input type="checkbox" name="days[]" value="tue" /> Tue</label>
-                  <label class="checkbox-inline"><input type="checkbox" name="days[]" value="wed" /> Wed</label>
-                  <label class="checkbox-inline"><input type="checkbox" name="days[]" value="thu" /> Thu</label>
-                  <label class="checkbox-inline"><input type="checkbox" name="days[]" value="fri" /> Fri</label>
-                  <label class="checkbox-inline"><input type="checkbox" name="days[]" value="sat" /> Sat</label>
+            </div>
+            <div>
+              <label>Pets in the home? (optional)</label>
+              <div class="option-group">
+                <label><input type="radio" name="pets" value="yes" /> Yes</label>
+                <label><input type="radio" name="pets" value="no" /> No</label>
+                <label><input type="radio" name="pets" value="unsure" /> Unsure / varies</label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Free text -->
+          <div>
+            <label for="notes">Anything else you’d like us to know? (optional)</label>
+            <textarea
+              id="notes"
+              name="notes"
+              placeholder="You can mention schedule preferences, communication needs, or anything that helps us plan. Please don’t include diagnoses or very sensitive medical details."
+            ></textarea>
+          </div>
+
+          <!-- Contact & consent -->
+          <hr style="border:none; border-top:1px solid rgba(110,119,132,0.15); margin:0.5rem 0 0.8rem;" />
+
+          <div class="form-grid-2">
+            <div>
+              <label for="name">Your name<span class="required">*</span></label>
+              <input type="text" id="name" name="name" required />
+            </div>
+            <div>
+              <label for="relationship">Relationship to the person needing services (optional)</label>
+              <input type="text" id="relationship" name="relationship" />
+            </div>
+          </div>
+
+          <div class="form-grid-2">
+            <div>
+              <label for="email">Email address<span class="required">*</span></label>
+              <input type="email" id="email" name="email" required />
+            </div>
+            <div>
+              <label for="phone">Phone number<span class="required">*</span></label>
+              <input type="tel" id="phone" name="phone" required />
+            </div>
+          </div>
+
+          <div>
+            <label>Preferred contact method<span class="required">*</span></label>
+            <div class="option-group">
+              <label><input type="radio" name="contact_method" value="email" required /> Email</label>
+              <label><input type="radio" name="contact_method" value="phone" /> Phone call</label>
+              <label><input type="radio" name="contact_method" value="text" /> Text message</label>
+            </div>
+          </div>
+
+          <div>
+            <div class="option-group">
+              <label>
+                <input type="checkbox" name="consent" value="agree" required />
+                I understand this form is <strong>not for emergencies</strong> and does <strong>not</strong> create a patient–provider relationship.
+              </label>
+            </div>
+          </div>
+
+          <div>
+            <div class="option-group">
+              <label>
+                <input type="checkbox" name="updates" value="yes" />
+                I’d like to receive email updates as services become available in my area.
+              </label>
+            </div>
+          </div>
+
+          <button type="submit" class="btn-primary btn-submit">
+            Submit interest
+          </button>
+
+          <div class="form-footer">
+            <div class="disclaimer">
+              <strong>Emergency notice:</strong> If you are experiencing a medical or mental health emergency, call 911
+              or your local emergency number right away. Do not use this form.
+            </div>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div>© <span id="year"></span> InHome Care Providers. All rights reserved.</div>
+      <div>Planning phase – services not yet available in all areas.</div>
+    </div>
+  </footer>
+
+  <script>
+    // Simple year updater
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
