@@ -744,10 +744,65 @@
           <hr style="border:none; border-top:1px solid rgba(110,119,132,0.15); margin:0.5rem 0 0.8rem;" />
 
           <div class="form-grid-2">
-            <div>
-              <label for="name">Your name<span class="required">*</span></label>
-              <input type="text" id="name" name="name" required />
-            </div>
+<div class="form-grid-2">
+  <div>
+    <label for="first_name">First name<span class="required">*</span></label>
+    <input
+      type="text"
+      id="first_name"
+      name="first_name"
+      autocomplete="given-name"
+      required
+    />
+  </div>
+
+  <div>
+    <label for="last_name">Last name<span class="required">*</span></label>
+    <input
+      type="text"
+      id="last_name"
+      name="last_name"
+      autocomplete="family-name"
+      required
+    />
+  </div>
+</div>
+
+<div class="form-grid-2">
+  <div>
+    <label for="middle_initial">Middle initial <span class="hint">(optional)</span></label>
+    <input
+      type="text"
+      id="middle_initial"
+      name="middle_initial"
+      maxlength="1"
+      inputmode="text"
+      autocomplete="additional-name"
+      placeholder="M"
+    />
+    <div class="hint">One letter only.</div>
+  </div>
+
+  <div>
+    <label for="suffix">Suffix <span class="hint">(optional)</span></label>
+    <select id="suffix" name="suffix" autocomplete="honorific-suffix">
+      <option value="">None</option>
+      <option value="Jr.">Jr.</option>
+      <option value="Sr.">Sr.</option>
+      <option value="II">II</option>
+      <option value="III">III</option>
+      <option value="IV">IV</option>
+      <option value="V">V</option>
+      <option value="MD">MD</option>
+      <option value="DO">DO</option>
+      <option value="RN">RN</option>
+      <option value="NP">NP</option>
+      <option value="PA-C">PA-C</option>
+      <option value="PhD">PhD</option>
+    </select>
+  </div>
+</div>
+
             <div>
               <label for="relationship">Relationship to the person needing services (optional)</label>
               <input type="text" id="relationship" name="relationship" />
