@@ -656,7 +656,7 @@
           <div>
             <label>Which in-home services would be most helpful?<span class="required">*</span></label>
             <div class="option-group">
-              <label><input type="checkbox" name="services" value="pt" required /> Physical Therapy (PT)</label>
+              <label><input type="checkbox" name="services" value="pt" /> Physical Therapy (PT)</label>
               <label><input type="checkbox" name="services" value="ot" /> Occupational Therapy (OT)</label>
               <label><input type="checkbox" name="services" value="speech" /> Speech / Language Therapy</label>
               <label><input type="checkbox" name="services" value="behavioral" /> Behavioral / ABA services</label>
@@ -905,9 +905,19 @@
     return obj;
   }
 
+  function atLeastOneChecked(name) {
+    return [...form.querySelectorAll(`input[name="${name}"]`)].some(i => i.checked);
+  }
+
   // ---- submit handler ----
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
+
+  // Require at least one "services" checkbox
+  if (!atLeastOneChecked("services")) {
+    setStatus("Please select at least one service option.", true);
+    return;
+  }
 
     setStatus("Submitting...");
     submitBtn.disabled = true;
