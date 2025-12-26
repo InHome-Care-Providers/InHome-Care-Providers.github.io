@@ -607,7 +607,8 @@
           diagnoses or very sensitive medical details.
         </p>
 
-        <form action="#" method="post">
+        <!--<form action="#" method="post"> removed, wired to sharepoint now-->
+        <form id="interestForm"></form>
           <!-- Who are you -->
           <div>
             <label>Who are you completing this form for?<span class="required">*</span></label>
@@ -791,6 +792,8 @@
             </div>
           </div>
 
+          <p id="formStatus" style="margin:0.25rem 0 0.5rem; font-size:0.9rem;"></p>
+
           <button type="submit" class="btn-primary btn-submit">
             Submit interest
           </button>
@@ -817,5 +820,83 @@
     // Simple year updater
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
+
+  <script>
+  // ---- CONFIG: set these ----
+  const FUNCTION_URL = "https://frontend-intake-api-e4axdgafaaatesc9.canadacentral-01.azurewebsites.net/api/submit";
+  const FORM_SECRET  = "XqvZbDxcVKVZrCdt4TqRf7EfdSACCYSe";
+
+  // ---- helpers ----
+  const form = document.getElementById("interestForm");
+  const statusEl = document.getElementById("formStatus");
+  const submitBtn = form.querySelector('button[type="submit"]');
+
+  function setStatus(msg, isError = false) {
+    statusEl.textContent = msg;
+    statusEl.style.color = isError ? "crimson" : "green";
+  }
+
+  function formDataToObject(fd) {
+    const obj = {};
+    for (const [key, value] of fd.entries()) {
+      // handle repeated fields like checkboxes (services/times/access)
+      if (obj[key] !== undefined) {
+        if (Array.isArray(obj[key])) obj[key].push(value);
+        else obj[key] = [obj[key], value];
+      } else {
+        obj[key] = value;
+      }
+    }
+    return obj;
+  }
+
+  // ---- submit handler ----
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    setStatus("Submitting...");
+    submitBtn.disabled = true;
+
+    try {
+      const fd = new FormData(form);
+      const answers = formDataToObject(fd);
+
+      // Build payload expected by your function
+      const payload = {
+        sourcePage: window.location.pathname,
+        name: answers.name || "",
+        email: answers.email || "",
+        answers
+      };
+
+      const res = await fetch(FUNCTION_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-Form-Secret": FORM_SECRET
+        },
+        body: JSON.stringify(payload)
+      });
+
+      const data = await res.json().catch(() => ({}));
+
+      if (!res.ok || !data.ok) {
+        console.error("Submit failed:", res.status, data);
+        setStatus(`Submit failed: ${data.error || "Unknown error"}`, true);
+        submitBtn.disabled = false;
+        return;
+      }
+
+      setStatus("Submitted successfully ✅ We’ll be in touch as we launch.");
+      form.reset();
+      submitBtn.disabled = false;
+    } catch (err) {
+      console.error(err);
+      setStatus("Network error submitting form. Please try again.", true);
+      submitBtn.disabled = false;
+    }
+  });
+</script>
+
 </body>
 </html>
