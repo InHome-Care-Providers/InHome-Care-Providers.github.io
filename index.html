@@ -770,6 +770,20 @@
 
 <div class="form-grid-2">
   <div>
+    <label for="prefix">Prefix <span class="hint">(optional)</span></label>
+    <select id="prefix" name="prefix" autocomplete="honorific-prefix">
+      <option value="">None</option>
+      <option value="Mr.">Mr.</option>
+      <option value="Mrs.">Mrs.</option>
+      <option value="Ms.">Ms.</option>
+      <option value="Miss">Miss</option>
+      <option value="Mx.">Mx.</option>
+      <option value="Dr.">Dr.</option>
+      <option value="Prof.">Prof.</option>
+    </select>
+  </div>
+
+  <div>
     <label for="middle_initial">Middle initial <span class="hint">(optional)</span></label>
     <input
       type="text"
@@ -782,7 +796,9 @@
     />
     <div class="hint">One letter only.</div>
   </div>
+</div>
 
+<div class="form-grid-2">
   <div>
     <label for="suffix">Suffix <span class="hint">(optional)</span></label>
     <select id="suffix" name="suffix" autocomplete="honorific-suffix">
@@ -802,6 +818,7 @@
     </select>
   </div>
 </div>
+
 
             <div>
               <label for="relationship">Relationship to the person needing services (optional)</label>
@@ -927,13 +944,19 @@
       const answers = formDataToObject(fd);
 
       // Build a display name from split fields
+      const prefix = (answers.prefix || "").trim();
       const mi = (answers.middle_initial || "").trim();
       const suffix = (answers.suffix || "").trim();
       const first = (answers.first_name || "").trim();
       const last = (answers.last_name || "").trim();
 
 const displayName =
-  [first, mi ? (mi.length === 1 ? mi.toUpperCase() + "." : mi) : "", last]
+  [
+    prefix,
+    first,
+    mi ? (mi.length === 1 ? mi.toUpperCase() + "." : mi) : "",
+    last
+  ]
     .filter(Boolean)
     .join(" ") + (suffix ? `, ${suffix}` : "");
 
