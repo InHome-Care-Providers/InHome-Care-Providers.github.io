@@ -916,12 +916,24 @@
       const fd = new FormData(form);
       const answers = formDataToObject(fd);
 
+      // Build a display name from split fields
+      const mi = (answers.middle_initial || "").trim();
+      const suffix = (answers.suffix || "").trim();
+      const first = (answers.first_name || "").trim();
+      const last = (answers.last_name || "").trim();
+
+const displayName =
+  [first, mi ? (mi.length === 1 ? mi.toUpperCase() + "." : mi) : "", last]
+    .filter(Boolean)
+    .join(" ") + (suffix ? `, ${suffix}` : "");
+
+
       // Build payload expected by your function
       const payload = {
-        sourcePage: window.location.pathname,
-        name: answers.name || "",
-        email: answers.email || "",
-        answers
+      sourcePage: window.location.pathname,
+      name: displayName,
+      email: answers.email || "",
+      answers
       };
 
       const res = await fetch(FUNCTION_URL, {
