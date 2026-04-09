@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Careers | InHome Care Providers</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --teal:       #2a9d8f;
+      --teal-dark:  #1f7a6e;
+      --teal-light: #e8f5f3;
+      --gold:       #b5892a;
+      --gold-light: #f9f3e7;
+      --gold-dark:  #8a6520;
+      --white:      #ffffff;
+      --off-white:  #f8faf9;
+      --text:       #1c2b2a;
+      --text-muted: #5a706e;
+      --border:     #d4ede9;
+      --shadow:     0 4px 24px rgba(42,157,143,0.10);
+      --radius:     12px;
+      --nav-h:      72px;
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body:    'DM Sans', system-ui, sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); color: var(--text); background: var(--white); line-height: 1.6; overflow-x: hidden; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+
+    .container { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 13px 28px; border-radius: 50px; font-family: var(--font-body);
+      font-size: 0.95rem; font-weight: 600; cursor: pointer; border: none;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary { background: var(--gold); color: var(--white); box-shadow: 0 4px 16px rgba(181,137,42,0.32); }
+    .btn-primary:hover { background: var(--gold-dark); box-shadow: 0 6px 22px rgba(181,137,42,0.40); }
+    .btn-teal { background: var(--teal); color: var(--white); box-shadow: 0 4px 16px rgba(42,157,143,0.30); }
+    .btn-teal:hover { background: var(--teal-dark); }
+    .btn-outline-teal { background: transparent; border: 2px solid var(--teal); color: var(--teal); }
+    .btn-outline-teal:hover { background: var(--teal-light); }
+    .btn-white { background: var(--white); color: var(--gold-dark); font-weight: 700; box-shadow: 0 4px 16px rgba(0,0,0,0.15); }
+    .btn-white:hover { background: #fff9ee; }
+    .btn-outline { background: transparent; border: 2px solid var(--white); color: var(--white); }
+    .btn-outline:hover { background: rgba(255,255,255,0.15); }
+
+    .section-label {
+      display: inline-block; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--gold); background: var(--gold-light);
+      border-radius: 50px; padding: 4px 14px; margin-bottom: 14px;
+    }
+    .section-title {
+      font-family: var(--font-display); font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      font-weight: 700; color: var(--text); line-height: 1.2; margin-bottom: 16px;
+    }
+    .section-sub { font-size: 1.05rem; color: var(--text-muted); max-width: 560px; line-height: 1.7; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      height: var(--nav-h); background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(10px); border-bottom: 1px solid var(--border);
+      box-shadow: 0 2px 16px rgba(42,157,143,0.07);
+    }
+    .nav-inner {
+      max-width: 1120px; margin: 0 auto; padding: 0 24px;
+      height: 100%; display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 12px; }
+    .nav-logo img { height: 50px; width: auto; }
+    .nav-logo-text { display: flex; flex-direction: column; line-height: 1.2; }
+    .nav-logo-text span:first-child { font-family: var(--font-display); font-size: 1.05rem; font-weight: 700; color: var(--teal-dark); }
+    .nav-logo-text span:last-child { font-size: 0.7rem; font-weight: 500; color: var(--gold); letter-spacing: 0.08em; text-transform: uppercase; }
+    .nav-links { display: flex; align-items: center; gap: 32px; }
+    .nav-links a { font-size: 0.9rem; font-weight: 500; color: var(--text-muted); transition: color 0.15s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--teal); }
+    .nav-cta { display: flex; align-items: center; gap: 12px; }
+    .nav-phone { font-size: 0.85rem; font-weight: 600; color: var(--teal); display: flex; align-items: center; gap: 6px; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: var(--teal); border-radius: 2px; transition: 0.2s; }
+    .mobile-menu {
+      display: none; position: fixed; top: var(--nav-h); left: 0; right: 0;
+      background: var(--white); border-bottom: 1px solid var(--border);
+      padding: 20px 24px 28px; z-index: 99; box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    }
+    .mobile-menu.open { display: block; }
+    .mobile-menu a { display: block; padding: 12px 0; font-size: 1rem; font-weight: 500; color: var(--text); border-bottom: 1px solid var(--border); }
+    .mobile-menu a:last-of-type { border-bottom: none; }
+    .mobile-menu .btn { margin-top: 16px; width: 100%; justify-content: center; }
+
+    /* HERO */
+    .careers-hero {
+      padding: 160px 0 80px;
+      background: linear-gradient(135deg, rgba(31,122,110,0.90) 0%, rgba(42,157,143,0.82) 50%, rgba(181,137,42,0.65) 100%),
+        url('https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=1600&auto=format&fit=crop&q=80') center/cover no-repeat;
+      text-align: center; position: relative;
+    }
+    .careers-hero::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 50% 80%, rgba(181,137,42,0.12) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .careers-hero .container { position: relative; z-index: 1; }
+    .careers-hero h1 {
+      font-family: var(--font-display); font-size: clamp(2.2rem, 5vw, 3.4rem);
+      font-weight: 700; color: var(--white); line-height: 1.15; margin-bottom: 18px;
+    }
+    .careers-hero h1 em { font-style: normal; color: #f5d98b; }
+    .careers-hero p { font-size: 1.1rem; color: rgba(255,255,255,0.88); max-width: 580px; margin: 0 auto 32px; line-height: 1.7; }
+    .careers-hero .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.30);
+      border-radius: 50px; padding: 6px 16px; margin-bottom: 28px;
+      font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: rgba(255,255,255,0.95); backdrop-filter: blur(6px);
+    }
+    .careers-hero .hero-eyebrow::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); display: block; }
+
+    /* PERKS */
+    .perks { padding: 72px 0; background: var(--off-white); }
+    .perks-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 20px; margin-top: 40px; }
+    .perk-card {
+      background: var(--white); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 28px 22px; text-align: center;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .perk-card:hover { transform: translateY(-4px); box-shadow: 0 8px 28px rgba(42,157,143,0.12); }
+    .perk-icon { font-size: 1.6rem; margin-bottom: 12px; }
+    .perk-card h4 { font-family: var(--font-display); font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+    .perk-card p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.55; }
+
+    /* FILTER */
+    .filter-bar {
+      display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;
+      margin-bottom: 40px;
+    }
+    .filter-btn {
+      padding: 8px 20px; border-radius: 50px; border: 1.5px solid var(--border);
+      background: var(--white); font-family: var(--font-body); font-size: 0.85rem;
+      font-weight: 500; color: var(--text-muted); cursor: pointer;
+      transition: all 0.15s;
+    }
+    .filter-btn:hover { border-color: var(--teal); color: var(--teal); }
+    .filter-btn.active { background: var(--teal); color: var(--white); border-color: var(--teal); }
+
+    /* JOBS */
+    .jobs { padding: 80px 0 96px; background: var(--white); }
+    .jobs-header { text-align: center; margin-bottom: 32px; }
+    .jobs-header .section-sub { margin: 0 auto; }
+    .jobs-list { display: flex; flex-direction: column; gap: 16px; max-width: 860px; margin: 0 auto; }
+
+    .job-card {
+      background: var(--white); border: 1.5px solid var(--border); border-radius: var(--radius);
+      overflow: hidden; transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .job-card:hover { border-color: var(--teal); box-shadow: 0 6px 24px rgba(42,157,143,0.10); }
+    .job-card-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 24px 28px; cursor: pointer; gap: 16px;
+    }
+    .job-card-header:hover .job-title { color: var(--teal); }
+    .job-info { flex: 1; }
+    .job-title { font-family: var(--font-display); font-size: 1.15rem; font-weight: 700; color: var(--text); transition: color 0.15s; margin-bottom: 6px; }
+    .job-meta { display: flex; flex-wrap: wrap; gap: 16px; }
+    .job-tag {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-size: 0.78rem; font-weight: 500; color: var(--text-muted);
+    }
+    .job-tag svg { flex-shrink: 0; }
+    .toggle-icon {
+      flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%;
+      background: var(--teal-light); color: var(--teal);
+      display: flex; align-items: center; justify-content: center;
+      transition: transform 0.25s, background 0.2s;
+    }
+    .job-card.open .toggle-icon { transform: rotate(180deg); background: var(--teal); color: var(--white); }
+
+    .job-detail {
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.35s ease;
+    }
+    .job-detail-inner {
+      padding: 0 28px 28px;
+      border-top: 1px solid var(--border);
+    }
+    .job-detail-inner h4 {
+      font-family: var(--font-display); font-size: 0.95rem; font-weight: 700;
+      color: var(--text); margin: 20px 0 10px;
+    }
+    .job-detail-inner p, .job-detail-inner li {
+      font-size: 0.88rem; color: var(--text-muted); line-height: 1.65;
+    }
+    .job-detail-inner ul { padding-left: 18px; list-style: disc; }
+    .job-detail-inner li { margin-bottom: 5px; }
+    .job-detail-inner .apply-row {
+      margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--border);
+      display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+    }
+
+    /* CTA BAND */
+    .cta-band { padding: 80px 24px; background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold) 100%); text-align: center; position: relative; overflow: hidden; }
+    .cta-band::before {
+      content: ''; position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E") repeat;
+    }
+    .cta-band h2 { font-family: var(--font-display); font-size: clamp(1.8rem, 3.5vw, 2.6rem); font-weight: 700; color: var(--white); margin-bottom: 14px; position: relative; }
+    .cta-band p { font-size: 1.05rem; color: rgba(255,255,255,0.88); margin-bottom: 32px; max-width: 520px; margin-left: auto; margin-right: auto; position: relative; }
+    .cta-actions { display: flex; justify-content: center; flex-wrap: wrap; gap: 14px; position: relative; }
+
+    /* FOOTER */
+    footer { background: var(--text); color: rgba(255,255,255,0.70); padding: 64px 0 0; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+    .footer-brand img { height: 60px; margin-bottom: 16px; filter: brightness(0) invert(1) opacity(0.85); }
+    .footer-brand p { font-size: 0.88rem; line-height: 1.7; max-width: 280px; }
+    .footer-col h5 { font-family: var(--font-display); color: var(--white); font-size: 1rem; margin-bottom: 16px; }
+    .footer-col a { display: block; font-size: 0.87rem; color: rgba(255,255,255,0.58); margin-bottom: 10px; transition: color 0.15s; }
+    .footer-col a:hover { color: var(--gold); }
+    .footer-contact-item { display: flex; gap: 10px; align-items: flex-start; font-size: 0.87rem; margin-bottom: 12px; color: rgba(255,255,255,0.62); }
+    .footer-contact-item svg { flex-shrink: 0; margin-top: 2px; color: var(--gold); }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding: 20px 0; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; font-size: 0.8rem; color: rgba(255,255,255,0.35); }
+    .footer-bottom a { color: rgba(255,255,255,0.45); transition: color 0.15s; }
+    .footer-bottom a:hover { color: var(--gold); }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .nav-links, .nav-cta { display: none; }
+      .hamburger { display: flex; }
+      .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+      .perks-grid { grid-template-columns: 1fr 1fr; }
+      .job-card-header { padding: 18px 20px; }
+      .job-detail-inner { padding: 0 20px 20px; }
+      .job-meta { gap: 10px; }
+    }
+    @media (max-width: 480px) {
+      .perks-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="IHCP_Hard_Launch.html" class="nav-logo">
+      <img src="InHomeCareProvidersLOGO.JPG" alt="InHome Care Providers" />
+      <div class="nav-logo-text">
+        <span>InHome Care Providers</span>
+        <span>Compassionate Care at Home</span>
+      </div>
+    </a>
+    <div class="nav-links">
+      <a href="IHCP_Hard_Launch.html#services">Services</a>
+      <a href="IHCP_Hard_Launch.html#how-it-works">How It Works</a>
+      <a href="IHCP_Hard_Launch.html#why-us">Why Us</a>
+      <a href="#" class="active">Careers</a>
+      <a href="IHCP_Hard_Launch.html#contact">Contact</a>
+    </div>
+    <div class="nav-cta">
+      <a href="tel:8005550000" class="nav-phone">
+        <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 7V5z"/></svg>
+        (800) 555-CARE
+      </a>
+      <a href="IHCP_Hard_Launch.html#contact" class="btn btn-primary" style="padding:10px 22px; font-size:0.85rem;">Get Started</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="IHCP_Hard_Launch.html#services">Services</a>
+  <a href="IHCP_Hard_Launch.html#how-it-works">How It Works</a>
+  <a href="IHCP_Hard_Launch.html#why-us">Why Us</a>
+  <a href="#">Careers</a>
+  <a href="IHCP_Hard_Launch.html#contact">Contact</a>
+  <a href="tel:8005550000" class="btn btn-teal">📞  Call (800) 555-CARE</a>
+</div>
+
+<!-- HERO -->
+<section class="careers-hero">
+  <div class="container">
+    <div class="hero-eyebrow">Now Hiring</div>
+    <h1>Build a Career in <em>Compassionate Care</em></h1>
+    <p>Join a team that's making a real difference in the lives of families across the Greater Atlanta Area. We're growing — and we'd love for you to grow with us.</p>
+    <a href="#openings" class="btn btn-white">View Open Positions ↓</a>
+  </div>
+</section>
+
+<!-- PERKS -->
+<section class="perks">
+  <div class="container">
+    <div style="text-align:center;">
+      <span class="section-label">Why Work With Us</span>
+      <h2 class="section-title">More Than a Job — A Mission</h2>
+      <p class="section-sub" style="margin:0 auto;">We invest in our people so they can invest in our patients.</p>
+    </div>
+    <div class="perks-grid">
+      <div class="perk-card">
+        <div class="perk-icon">💰</div>
+        <h4>Competitive Pay</h4>
+        <p>Fair compensation that reflects your skills and the value you bring.</p>
+      </div>
+      <div class="perk-card">
+        <div class="perk-icon">📈</div>
+        <h4>Growth Opportunities</h4>
+        <p>Clear paths for advancement, mentorship, and continuing education support.</p>
+      </div>
+      <div class="perk-card">
+        <div class="perk-icon">📅</div>
+        <h4>Flexible Scheduling</h4>
+        <p>Work-life balance with schedules built around your availability.</p>
+      </div>
+      <div class="perk-card">
+        <div class="perk-icon">🤝</div>
+        <h4>Supportive Team</h4>
+        <p>A collaborative, mission-driven culture where your voice matters.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OPEN POSITIONS -->
+<section class="jobs" id="openings">
+  <div class="container">
+    <div class="jobs-header">
+      <span class="section-label">Open Positions</span>
+      <h2 class="section-title">Find Your Role</h2>
+      <p class="section-sub">Click any position to learn more and apply.</p>
+    </div>
+
+    <div class="filter-bar">
+      <button class="filter-btn active" data-filter="all">All Positions</button>
+      <button class="filter-btn" data-filter="therapy">Therapy</button>
+      <button class="filter-btn" data-filter="clinical">Clinical &amp; Admin</button>
+      <button class="filter-btn" data-filter="support">Support Staff</button>
+    </div>
+
+    <div class="jobs-list">
+
+      <!-- Director of Patient Services -->
+      <div class="job-card" data-category="clinical">
+        <div class="job-card-header" onclick="toggleJob(this)">
+          <div class="job-info">
+            <div class="job-title">Director of Patient Services</div>
+            <div class="job-meta">
+              <span class="job-tag"><svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg> Greater Atlanta Area</span>
+              <span class="job-tag"><svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> Full-Time</span>
+              <span class="job-tag"><svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5"/></svg> Leadership</span>
+            </div>
+          </div>
+          <div class="toggle-icon"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></div>
+        </div>
+        <div class="job-detail">
+          <div class="job-detail-inner">
+            <p>Senior leadership role overseeing operational and clinical coordination of home health services. You'll provide strategic direction, staff leadership, and operational oversight to the Care Coordination team.</p>
+            <h4>Key Responsibilities</h4>
+            <ul>
+              <li>Lead, supervise, and mentor the Care Coordination team including intake staff and scheduling personnel</li>
+              <li>Oversee patient intake, referral management, scheduling, authorization, and care coordination</li>
+              <li>Develop and evaluate departmental workflows, policies, and procedures</li>
+              <li>Monitor KPIs including referral conversion rates, start-of-care timeliness, and patient satisfaction</li>
+              <li>Champion compassionate, patient-centered service delivery across the department</li>
+            </ul>
+            <h4>Qualifications</h4>
+            <ul>
+              <li>Senior-level experience in home health operations or patient services leadership</li>
+              <li>Strong knowledge of Medicare/Medicaid home health regulations</li>
+              <li>Proven ability to lead teams and drive operational performance</li>
+            </ul>
+            <div class="apply-row">
+              <a href="mailto:careers@inhomecareproviders.com?subject=Application: Director of Patient Services" class="btn btn-teal" style="padding:10px 24px; font-size:0.88rem;">Apply Now</a>
+              <span style="font-size:0.82rem; color:var(--text-muted);">Send resume to careers@inhomecareproviders.com</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Care Coordinator -->
+      <div class="job-card" data-category="clinical">
+        <div class="job-card-header" onclick="toggleJob(this)">
+          <div class="job-info">
+            <div class="job-title">Care Coordinator</div>
+            <div class="job-meta">
+              <span class="job-tag"><svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg> Greater Atlanta Area</span>
+              <span class="job-tag"><svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> Full-Time</span>
+              <span class="job-tag"><svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5"/></svg> Patient Services</span>
+            </div>
+          </div>
+          <div class="toggle-icon"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></div>
+        </div>
+        <div class="job-detail">
+          <div class="job-detail-inner">
+            <p>Central point of contact for patients, families, referral sources, and clinical staff. You'll ensure home healthcare services are initiated, scheduled, and delivered seamlessly from referral through completion of care.</p>
+            <h4>Key Responsibilities</h4>
+            <ul>
+              <li>Receive and process referrals from hospitals, physicians, and skilled nursing facilities</li>
+              <li>Verify patient eligibility including insurance benefits, Medicare/Medicaid coverage, and prior authorizations</li>
+              <li>Coordinate start-of-care scheduling and assign appropriate clinical staff</li>
+              <li>Serve as primary liaison between patients, caregivers, referral sources, and the clinical team</li>
+              <li>Manage visit schedules for nurses, therapists, and home health aides</li>
+            </ul>
+            <h4>Qualifications</h4>
+            <ul>
+              <li>Experience in home health intake, care coordination, or medical office scheduling</li>
+              <li>Familiarity with insurance verification and authorization processes</li>
+              <li>Strong organizational and communication skills</li>
+            </ul>
+            <div class="apply-row">
+              <a href="mailto:careers@inhomecareproviders.com?subject=Application: Care Coordinator" class="btn btn-teal" style="padding:10px 24px; font-size:0.88rem;">Apply Now</a>
+              <span style="font-size:0.82rem; color:var(--text-muted);">Send resume to careers@inhomecareproviders.com</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Physical Therapist -->
+      <div class="job-card" data-category="therapy">
+        <div class="job-card-header" onclick="toggleJob(this)">
+          <div class="job-info">
+            <div class="job-title">Physical Therapist (PT)</div>
+            <div class="job-meta">
+              <span class="job-tag"><svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg> Greater Atlanta Area</span>
+              <span class="job-tag"><svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> Full-Time</span>
+              <span class="job-tag"><svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg> Therapy</span>
+            </div>
+          </div>
+          <div class="toggle-icon"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></div>
+        </div>
+        <div class="job-detail">
+          <div class="job-detail-inner">
+            <p>Evaluate patients in their home environment, design individualized treatment plans, and deliver evidence-based physical therapy interventions that restore function, reduce pain, and improve mobility.</p>
+            <h4>Key Responsibilities</h4>
+            <ul>
+              <li>Perform comprehensive PT evaluations assessing strength, ROM, balance, gait, and functional mobility</li>
+              <li>Develop goal-oriented plans of care with patients, families, and the interdisciplinary team</li>
+              <li>Provide skilled services including therapeutic exercise, neuromuscular re-education, balance/gait training, and manual therapy</li>
+              <li>Complete OASIS assessments as required by Medicare home health guidelines</li>
+              <li>Design and instruct patients in safe home exercise programs</li>
+            </ul>
+            <h4>Qualifications</h4>
+            <ul>
+              <li>Current Georgia PT license (or eligible)</li>
+              <li>Home health experience preferred; new graduates welcome</li>
+              <li>OASIS proficiency preferred</li>
+            </ul>
+            <div class="apply-row">
+              <a href="mailto:careers@inhomecareproviders.com?subject=Application: Physical Therapist" class="btn btn-teal" style="padding:10px 24px; font-size:0.88rem;">Apply Now</a>
+              <span style="font-size:0.82rem; color:var(--text-muted);">Send resume to careers@inhomecareproviders.com</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Physical Therapy Assistant -->
+      <div class="job-card" data-category="therapy">
+        <div class="job-card-header" onclick="toggleJob(this)">
+          <div class="job-info">
+            <div class="job-title">Physical Therapy Assistant (PTA)</div>
+            <div class="job-meta">
+              <span class="job-tag"><svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg> Greater Atlanta Area</span>
+              <span class="job-tag"><svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> Full-Time</span>
+              <span class="job-tag"><svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg> Therapy</span>
+            </div>
+          </div>
+          <div class="toggle-icon"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></div>
+        </div>
+        <div class="job-detail">
+          <div class="job-detail-inner">
+            <p>Under the supervision of a licensed Physical Therapist, carry out individualized treatment plans and support patients in restoring mobility, strength, and functional independence.</p>
+            <h4>Key Responsibilities</h4>
+            <ul>
+              <li>Implement PT treatment plans including therapeutic exercise, gait/balance training, and transfer training</li>
+              <li>Guide patients through home exercise programs with proper technique instruction</li>
+              <li>Monitor patient responses and report progress or concerns to the supervising PT</li>
+              <li>Provide compassionate education to patients and families on therapy goals and safe mobility strategies</li>
+            </ul>
+            <h4>Qualifications</h4>
+            <ul>
+              <li>Current Georgia PTA license (or eligible)</li>
+              <li>Associate degree from an accredited PTA program</li>
+              <li>Home health experience a plus</li>
+            </ul>
+            <div class="apply-row">
+              <a href="mailto:careers@inhomecareproviders.com?subject=Application: Physical Therapy Assistant" class="btn btn-teal" style="padding:10px 24px; font-size:0.88rem;">Apply Now</a>
+              <span style="font-size:0.82rem; color:var(--text-muted);">Send resume to careers@inhomecareproviders.com</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Occupational Therapist -->
+      <div class="job-card" data-category="therapy">
+        <div class="job-card-header" onclick="toggleJob(this)">
+          <div class="job-info">
+            <div class="job-title">Occupational Therapist (OT)</div>
+            <div class="job-meta">
+              <span class="job-tag"><svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg> Greater Atlanta Area</span>
+              <span class="job-tag"><svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> Full-Time</span>
+              <span class="job-tag"><svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg> Therapy</span>
+            </div>
+          </div>
+          <div class="toggle-icon"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></div>
+        </div>
+        <div class="job-detail">
+          <div class="job-detail-inner">
+            <p>Assess patients in their home environment, develop individualized treatment plans, and deliver evidence-based therapeutic interventions that maximize independence and quality of life.</p>
+            <h4>Key Responsibilities</h4>
+            <ul>
+              <li>Conduct comprehensive OT evaluations assessing functional abilities, cognitive status, and environmental barriers</li>
+              <li>Develop goal-oriented treatment plans with patients, families, and the interdisciplinary team</li>
+              <li>Provide skilled OT services including ADL/IADL training, fine motor rehabilitation, and cognitive retraining</li>
+              <li>Recommend and train patients on adaptive equipment and home modifications</li>
+            </ul>
+            <h4>Qualifications</h4>
+            <ul>
+              <li>Current Georgia OT license (or eligible)</li>
+              <li>Master's degree in Occupational Therapy from an accredited program</li>
+              <li>Home health experience preferred</li>
+            </ul>
+            <div class="apply-row">
+              <a href="mailto:careers@inhomecareproviders.com?subject=Application: Occupational Therapist" class="btn btn-teal" style="padding:10px 24px; font-size:0.88rem;">Apply Now</a>
+              <span style="font-size:0.82rem; color:var(--text-muted);">Send resume to careers@inhomecareproviders.com</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- COTA -->
+      <div class="job-card" data-category="therapy">
+        <div class="job-card-header" onclick="toggleJob(this)">
+          <div class="job-info">
+            <div class="job-title">Certified Occupational Therapy Assistant (COTA)</div>
+            <div class="job-meta">
+              <span class="job-tag"><svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg> Greater Atlanta Area</span>
+              <span class="job-tag"><svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> Full-Time</span>
+              <span class="job-tag"><svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg> Therapy</span>
+            </div>
+          </div>
+          <div class="toggle-icon"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></div>
+        </div>
+        <div class="job-detail">
+          <div class="job-detail-inner">
+            <p>Under the supervision of a licensed Occupational Therapist, assist in implementing treatment plans and support patients in regaining independence in their daily lives.</p>
+            <h4>Key Responsibilities</h4>
+            <ul>
+              <li>Implement OT treatment plans including ADL/IADL training, fine motor activities, and cognitive exercises</li>
+              <li>Instruct patients and caregivers in home exercise programs and energy conservation techniques</li>
+              <li>Assist patients with adaptive equipment and educate caregivers on safe usage</li>
+              <li>Monitor patient responses and report progress to the supervising OT</li>
+            </ul>
+            <h4>Qualifications</h4>
+            <ul>
+              <li>Current Georgia COTA license (or eligible)</li>
+              <li>NBCOT certification</li>
+              <li>Home health experience a plus</li>
+            </ul>
+            <div class="apply-row">
+              <a href="mailto:careers@inhomecareproviders.com?subject=Application: COTA" class="btn btn-teal" style="padding:10px 24px; font-size:0.88rem;">Apply Now</a>
+              <span style="font-size:0.82rem; color:var(--text-muted);">Send resume to careers@inhomecareproviders.com</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Speech-Language Pathologist -->
+      <div class="job-card" data-category="therapy">
+        <div class="job-card-header" onclick="toggleJob(this)">
+          <div class="job-info">
+            <div class="job-title">Speech-Language Pathologist (SLP)</div>
+            <div class="job-meta">
+              <span class="job-tag"><svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg> Greater Atlanta Area</span>
+              <span class="job-tag"><svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> Full-Time</span>
+              <span class="job-tag"><svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg> Therapy</span>
+            </div>
+          </div>
+          <div class="toggle-icon"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></div>
+        </div>
+        <div class="job-detail">
+          <div class="job-detail-inner">
+            <p>Evaluate and treat patients with communication disorders, cognitive-linguistic impairments, and swallowing dysfunction. Deliver individualized, evidence-based speech therapy in the patient's home.</p>
+            <h4>Key Responsibilities</h4>
+            <ul>
+              <li>Conduct comprehensive SLP evaluations assessing communication, cognition, voice, fluency, and swallowing</li>
+              <li>Administer and interpret standardized and non-standardized assessment tools</li>
+              <li>Provide skilled services targeting language, speech intelligibility, cognitive-communication deficits, and dysphagia</li>
+              <li>Complete OASIS assessments per Medicare home health guidelines</li>
+            </ul>
+            <h4>Qualifications</h4>
+            <ul>
+              <li>Current Georgia SLP license (or eligible)</li>
+              <li>ASHA Certificate of Clinical Competence (CCC-SLP)</li>
+              <li>Home health experience preferred</li>
+            </ul>
+            <div class="apply-row">
+              <a href="mailto:careers@inhomecareproviders.com?subject=Application: Speech-Language Pathologist" class="btn btn-teal" style="padding:10px 24px; font-size:0.88rem;">Apply Now</a>
+              <span style="font-size:0.82rem; color:var(--text-muted);">Send resume to careers@inhomecareproviders.com</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLPA -->
+      <div class="job-card" data-category="therapy">
+        <div class="job-card-header" onclick="toggleJob(this)">
+          <div class="job-info">
+            <div class="job-title">Speech-Language Pathology Assistant (SLPA)</div>
+            <div class="job-meta">
+              <span class="job-tag"><svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg> Greater Atlanta Area</span>
+              <span class="job-tag"><svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> Full-Time</span>
+              <span class="job-tag"><svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg> Therapy</span>
+            </div>
+          </div>
+          <div class="toggle-icon"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></div>
+        </div>
+        <div class="job-detail">
+          <div class="job-detail-inner">
+            <p>Under the direct supervision of a licensed SLP, assist in implementing treatment plans and deliver targeted therapeutic activities for patients with communication disorders and swallowing difficulties.</p>
+            <h4>Key Responsibilities</h4>
+            <ul>
+              <li>Implement SLP treatment plans targeting language, speech production, voice, fluency, and cognitive-communication skills</li>
+              <li>Assist in delivering dysphagia treatment activities including oral motor exercises</li>
+              <li>Guide patients through home practice programs established by the supervising SLP</li>
+              <li>Assist with AAC devices and materials as directed</li>
+              <li>Document patient responses and report changes to the supervising SLP</li>
+            </ul>
+            <h4>Qualifications</h4>
+            <ul>
+              <li>Georgia SLPA licensure or eligibility</li>
+              <li>Associate's or Bachelor's degree in speech-language pathology or communication sciences</li>
+              <li>Home health experience a plus</li>
+            </ul>
+            <div class="apply-row">
+              <a href="mailto:careers@inhomecareproviders.com?subject=Application: SLPA" class="btn btn-teal" style="padding:10px 24px; font-size:0.88rem;">Apply Now</a>
+              <span style="font-size:0.82rem; color:var(--text-muted);">Send resume to careers@inhomecareproviders.com</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Personal Care Assistant -->
+      <div class="job-card" data-category="support">
+        <div class="job-card-header" onclick="toggleJob(this)">
+          <div class="job-info">
+            <div class="job-title">Personal Care Assistant (PCA)</div>
+            <div class="job-meta">
+              <span class="job-tag"><svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg> Greater Atlanta Area</span>
+              <span class="job-tag"><svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> Full-Time / Part-Time</span>
+              <span class="job-tag"><svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg> Home Care</span>
+            </div>
+          </div>
+          <div class="toggle-icon"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></div>
+        </div>
+        <div class="job-detail">
+          <div class="job-detail-inner">
+            <p>Provide non-medical personal care, companionship, and assistance with activities of daily living in clients' homes. Ideal for individuals passionate about serving others and supporting client independence and dignity.</p>
+            <h4>Key Responsibilities</h4>
+            <ul>
+              <li>Assist clients with bathing, grooming, oral care, dressing, and personal hygiene</li>
+              <li>Support safe mobility, transfers, and ambulation using proper body mechanics</li>
+              <li>Help with meal preparation and adherence to dietary guidelines</li>
+              <li>Provide medication reminders (PCAs do not administer medications)</li>
+              <li>Perform light housekeeping and provide meaningful companionship</li>
+            </ul>
+            <h4>Qualifications</h4>
+            <ul>
+              <li>Compassionate, dependable, and committed to client dignity</li>
+              <li>CNA certification or prior caregiving experience preferred</li>
+              <li>Valid driver's license and reliable transportation</li>
+            </ul>
+            <div class="apply-row">
+              <a href="mailto:careers@inhomecareproviders.com?subject=Application: Personal Care Assistant" class="btn btn-teal" style="padding:10px 24px; font-size:0.88rem;">Apply Now</a>
+              <span style="font-size:0.82rem; color:var(--text-muted);">Send resume to careers@inhomecareproviders.com</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<section class="cta-band">
+  <h2>Don't See Your Role?</h2>
+  <p>We're always looking for talented, compassionate people. Send us your resume and we'll keep you in mind for future openings.</p>
+  <div class="cta-actions">
+    <a href="mailto:careers@inhomecareproviders.com?subject=General Application" class="btn btn-white">✉️ &nbsp;Send Your Resume</a>
+    <a href="tel:8005550000" class="btn btn-outline">📞 &nbsp;Call (800) 555-CARE</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="InHomeCareProvidersLOGO.JPG" alt="InHome Care Providers" />
+        <p>Compassionate, professional in-home care services dedicated to keeping your loved ones comfortable, safe, and independent.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Services</h5>
+        <a href="IHCP_Hard_Launch.html#services">Personal Care</a>
+        <a href="IHCP_Hard_Launch.html#services">Companion Care</a>
+        <a href="IHCP_Hard_Launch.html#services">Skilled Nursing</a>
+        <a href="IHCP_Hard_Launch.html#services">Memory Care</a>
+      </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <a href="IHCP_Hard_Launch.html">Home</a>
+        <a href="IHCP_Hard_Launch.html#why-us">About Us</a>
+        <a href="#" style="color:var(--gold);">Careers</a>
+        <a href="IHCP_Hard_Launch.html#contact">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h5>Contact Us</h5>
+        <div class="footer-contact-item">
+          <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 7V5z"/></svg>
+          (800) 555-CARE
+        </div>
+        <div class="footer-contact-item">
+          <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          careers@inhomecareproviders.com
+        </div>
+        <div class="footer-contact-item">
+          <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          Serving the Greater Atlanta Area
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2025 InHome Care Providers. All rights reserved.</span>
+      <span>
+        <a href="#">Privacy Policy</a> &nbsp;&middot;&nbsp;
+        <a href="#">Terms of Service</a> &nbsp;&middot;&nbsp;
+        <a href="#">HIPAA Notice</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Mobile menu
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+  mobileMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => mobileMenu.classList.remove('open'));
+  });
+
+  // Accordion toggle
+  function toggleJob(header) {
+    const card = header.closest('.job-card');
+    const detail = card.querySelector('.job-detail');
+    const isOpen = card.classList.contains('open');
+
+    // Close all
+    document.querySelectorAll('.job-card.open').forEach(c => {
+      c.classList.remove('open');
+      c.querySelector('.job-detail').style.maxHeight = null;
+    });
+
+    // Open clicked (if wasn't already open)
+    if (!isOpen) {
+      card.classList.add('open');
+      detail.style.maxHeight = detail.scrollHeight + 'px';
+    }
+  }
+
+  // Filter
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+
+      // Close any open cards
+      document.querySelectorAll('.job-card.open').forEach(c => {
+        c.classList.remove('open');
+        c.querySelector('.job-detail').style.maxHeight = null;
+      });
+
+      document.querySelectorAll('.job-card').forEach(card => {
+        if (filter === 'all' || card.dataset.category === filter) {
+          card.style.display = '';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+</script>
+
+</body>
+</html>
