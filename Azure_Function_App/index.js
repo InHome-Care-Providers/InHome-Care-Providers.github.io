@@ -99,6 +99,8 @@ module.exports = async function (context, req) {
     ? origin
     : allowedOrigins[0] || "*";
 
+  context.log(`Origin received="${origin}" AllowedOrigins="${allowedOrigins.join(" | ")}"`);
+
   // ── CORS preflight ──
   if (req.method === "OPTIONS") {
     context.res = { status: 204, headers: corsHeaders(echoOrigin), body: "" };
