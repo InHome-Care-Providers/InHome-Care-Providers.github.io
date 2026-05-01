@@ -71,15 +71,15 @@
       box-shadow: 0 2px 16px rgba(42,157,143,0.07);
     }
     .nav-inner {
-      max-width: 1120px; margin: 0 auto; padding: 0 24px;
-      height: 100%; display: flex; align-items: center; justify-content: space-between;
+      max-width: 1320px; margin: 0 auto; padding: 0 24px;
+      height: 100%; display: flex; align-items: center; justify-content: space-between; gap: 28px;
     }
     .nav-logo { display: flex; align-items: center; gap: 12px; }
     .nav-logo img { height: 50px; width: auto; }
     .nav-logo-text { display: flex; flex-direction: column; line-height: 1.2; }
     .nav-logo-text span:first-child { font-family: var(--font-display); font-size: 1.05rem; font-weight: 700; color: var(--teal-dark); }
     .nav-logo-text span:last-child { font-size: 0.7rem; font-weight: 500; color: var(--gold); letter-spacing: 0.08em; text-transform: uppercase; }
-    .nav-links { display: flex; align-items: center; gap: 32px; }
+    .nav-links { display: flex; align-items: center; justify-content: center; gap: clamp(18px, 2vw, 32px); flex: 1; }
     .nav-links a { font-size: 0.9rem; font-weight: 500; color: var(--text-muted); transition: color 0.15s; }
     .nav-links a:hover, .nav-links a.active { color: var(--teal); }
     .nav-cta { display: flex; align-items: center; gap: 12px; }
