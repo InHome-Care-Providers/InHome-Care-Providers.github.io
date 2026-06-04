@@ -148,7 +148,7 @@
     .service-card {
       background: var(--white); border-radius: var(--radius); padding: 36px 30px;
       border: 1px solid var(--border); box-shadow: var(--shadow); position: relative; overflow: hidden;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      transition: transform 0.2s ease, box-shadow 0.2s ease; cursor: pointer;
     }
     .service-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--teal), var(--gold)); }
     .service-card:hover { transform: translateY(-5px); box-shadow: 0 12px 36px rgba(42,157,143,0.15); }
@@ -531,13 +531,35 @@
     <div class="services-header">
       <span class="section-label">What We Offer</span>
       <h2 class="section-title">Personalized Care for Every Need</h2>
-      <p class="section-sub">From daily assistance to skilled nursing, our team delivers expert, compassionate care tailored to each individual.</p>
+      <p class="section-sub">From daily assistance to therapy services, our team delivers expert, compassionate care tailored to each individual.</p>
     </div>
     <div class="services-grid">
-      <div class="service-card" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+      <div class="service-card" onclick="openServiceModal(this)" data-icon="🏡" data-title="Personal Care Assistance" data-blurb="Hands-on help with bathing, grooming, dressing, and daily hygiene routines — delivered with dignity and respect.">
         <div class="service-icon">🏡</div>
         <h3>Personal Care Assistance</h3>
         <p>Hands-on help with bathing, grooming, dressing, and daily hygiene routines — delivered with dignity and respect.</p>
+        <span class="service-link">Learn more →</span>
+      </div>
+
+      <div class="service-card" onclick="openServiceModal(this)" data-icon="🧩" data-title="Occupational Therapy" data-blurb="Through individualized sessions, this service will assist in regaining skills required to complete activities of daily living independently and safely. Rehab plans could include home safety assessments, neuro rehabilitation, cognitive training, and/or adaptive equipment recommendations.">
+        <div class="service-icon">🧩</div>
+        <h3>Occupational Therapy</h3>
+        <p>Support for daily living skills, home safety, cognitive training, neuro rehabilitation, and adaptive equipment recommendations.</p>
+        <span class="service-link">Learn more →</span>
+      </div>
+
+      <div class="service-card" onclick="openServiceModal(this)" data-icon="💪" data-title="Physical Therapy" data-blurb="Our physical therapy program works to increase strength, endurance, and balance for improved mobility and fall prevention. Rehab plans could also include treatment for swelling, pain management, and limited range of motion post surgical repairs, replacements, or illness.">
+        <div class="service-icon">💪</div>
+        <h3>Physical Therapy</h3>
+        <p>Rehabilitation focused on strength, endurance, balance, mobility, fall prevention, pain management, and range of motion.</p>
+        <span class="service-link">Learn more →</span>
+      </div>
+
+      <div class="service-card" onclick="openServiceModal(this)" data-icon="💬" data-title="Speech Therapy" data-blurb="While receiving services from our speech-language pathologist, rehab plans will address communication, voice, cognition, and/or swallowing challenges. Our therapists can also provide training for alternative communication devices if needed.">
+        <div class="service-icon">💬</div>
+        <h3>Speech Therapy</h3>
+        <p>Care plans address communication, voice, cognition, swallowing challenges, and alternative communication device training.</p>
+        <span class="service-link">Learn more →</span>
       </div>
     </div>
   </div>
@@ -1225,6 +1247,19 @@
     iconContainer.innerHTML = svg ? svg.outerHTML : '';
     overlay.classList.add('open');
     document.body.style.overflow = 'hidden';
+  }
+
+  function openServiceModal(card) {
+    const overlay = document.getElementById('careModal');
+    document.getElementById('careModalTitle').textContent = card.dataset.title;
+    document.getElementById('careModalBlurb').textContent = card.dataset.blurb;
+    document.getElementById('careModalIcon').innerHTML = `<div class="service-icon" style="margin:0 auto;font-size:2rem;">${card.dataset.icon || '🏡'}</div>`;
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function openTherapyModal(button) {
+    openServiceModal(button);
   }
   function closeCareModal(e, force) {
     if (force || e.target === document.getElementById('careModal')) {
