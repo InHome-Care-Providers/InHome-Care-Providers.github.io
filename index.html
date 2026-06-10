@@ -273,6 +273,50 @@
       display: block;
     }
 
+    /* CARE NEEDS */
+    .care-needs { padding: 96px 0; background: var(--text); }
+    .care-needs-header { text-align: center; margin-bottom: 52px; }
+    .care-needs-header .section-label { background: rgba(255,255,255,0.1); color: #f5d98b; }
+    .care-needs-header .section-title { color: var(--white); }
+    .care-needs-header .section-sub { color: rgba(255,255,255,0.68); margin: 0 auto 24px; }
+    .care-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+    .care-card {
+      background: rgba(255,255,255,0.05);
+      border: 1.5px solid rgba(255,255,255,0.10);
+      border-radius: var(--radius);
+      padding: 28px 14px 20px;
+      text-align: center;
+      cursor: pointer;
+      transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .care-card:hover {
+      background: rgba(42,157,143,0.15);
+      border-color: var(--teal);
+      transform: translateY(-5px);
+      box-shadow: 0 10px 32px rgba(42,157,143,0.22);
+    }
+    .care-illustration {
+      height: 90px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 14px;
+    }
+    .care-illustration svg { height: 88px; width: auto; }
+    .care-label {
+      display: block; font-weight: 600; font-size: 0.88rem;
+      color: rgba(255,255,255,0.88); margin-bottom: 6px; line-height: 1.3;
+    }
+    .care-link {
+      display: block; font-size: 0.77rem; color: var(--gold);
+      font-weight: 500; opacity: 0; transition: opacity 0.2s;
+    }
+    .care-card:hover .care-link { opacity: 1; }
+    .care-cta { text-align: center; margin-top: 44px; }
+    @media (max-width: 1100px) { .care-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 480px) { .care-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; } }
 
     @keyframes fadeUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
     .fade-up { opacity: 0; animation: fadeUp 0.65s ease forwards; }
@@ -550,6 +594,259 @@
         <p>Support for safe movement, fall prevention, transfer assistance, and daily mobility while preserving independence at home.</p>
         <span class="service-link">Learn more →</span>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- CARE NEEDS -->
+<section class="care-needs" id="care-needs">
+  <div class="container">
+    <div class="care-needs-header">
+      <span class="section-label">Find Your Care</span>
+      <h2 class="section-title">What Brings You Here?</h2>
+      <p class="section-sub">We offer compassionate, personalized in-home support for a wide range of health conditions and daily living needs. Explore the areas we can help with.</p>
+    </div>
+    <div class="care-grid">
+
+      <!-- 1. Aging & Senior Care -->
+      <div class="care-card" onclick="openCareModal(this)" data-title="Aging &amp; Senior Care" data-blurb="Support that helps seniors maintain independence, dignity, and comfort at home. We provide personalized assistance tailored to evolving needs—so aging in place feels safe and empowering.">
+        <div class="care-illustration">
+          <svg viewBox="0 0 90 112" xmlns="http://www.w3.org/2000/svg" fill="none">
+            <!-- head -->
+            <circle cx="42" cy="18" r="12" fill="#e8f5f3" stroke="#1f7a6e" stroke-width="2.5"/>
+            <!-- body (slight forward hunch) -->
+            <path d="M42 30 C41 42 39 54 37 70" stroke="#1f7a6e" stroke-width="3" stroke-linecap="round"/>
+            <!-- shoulders (tilted) -->
+            <path d="M26 42 L58 40" stroke="#1f7a6e" stroke-width="2.5" stroke-linecap="round"/>
+            <!-- left arm -->
+            <path d="M26 42 L18 63" stroke="#1f7a6e" stroke-width="2.5" stroke-linecap="round"/>
+            <!-- right arm toward cane -->
+            <path d="M58 40 L66 57" stroke="#1f7a6e" stroke-width="2.5" stroke-linecap="round"/>
+            <!-- legs -->
+            <path d="M37 70 L30 97" stroke="#1f7a6e" stroke-width="3" stroke-linecap="round"/>
+            <path d="M37 70 L46 97" stroke="#1f7a6e" stroke-width="3" stroke-linecap="round"/>
+            <!-- feet -->
+            <path d="M30 97 L21 99" stroke="#1f7a6e" stroke-width="2" stroke-linecap="round"/>
+            <path d="M46 97 L55 99" stroke="#1f7a6e" stroke-width="2" stroke-linecap="round"/>
+            <!-- CANE (gold) -->
+            <path d="M66 57 L72 97" stroke="#b5892a" stroke-width="3" stroke-linecap="round"/>
+            <path d="M69 97 L79 97" stroke="#b5892a" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <span class="care-label">Aging &amp; Senior Care</span>
+        <span class="care-link">Explore Care →</span>
+      </div>
+
+      <!-- 2. Post-Surgery Recovery -->
+      <div class="care-card" onclick="openCareModal(this)" data-title="Post-Surgery Recovery" data-blurb="Compassionate care designed to promote healing and reduce hospital readmissions. We assist with daily activities, mobility, and recovery routines to help you regain strength with confidence.">
+        <div class="care-illustration">
+          <svg viewBox="0 0 90 112" xmlns="http://www.w3.org/2000/svg" fill="none">
+            <!-- head -->
+            <circle cx="45" cy="18" r="12" fill="#e8f5f3" stroke="#1f7a6e" stroke-width="2.5"/>
+            <!-- body straight -->
+            <path d="M45 30 L45 72" stroke="#1f7a6e" stroke-width="3" stroke-linecap="round"/>
+            <!-- shoulders -->
+            <path d="M26 42 L64 42" stroke="#1f7a6e" stroke-width="2.5" stroke-linecap="round"/>
+            <!-- left arm down normal -->
+            <path d="M26 42 L18 66" stroke="#1f7a6e" stroke-width="2.5" stroke-linecap="round"/>
+            <!-- right arm bent at elbow -->
+            <path d="M64 42 L75 54 L71 65" stroke="#1f7a6e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <!-- SLING (gold) -->
+            <path d="M44 38 Q63 54 71 65 Q59 72 48 67 Q41 65 43 57 Z" fill="#f9f3e7" stroke="#b5892a" stroke-width="2" stroke-linejoin="round"/>
+            <!-- legs -->
+            <path d="M45 72 L37 100" stroke="#1f7a6e" stroke-width="3" stroke-linecap="round"/>
+            <path d="M45 72 L53 100" stroke="#1f7a6e" stroke-width="3" stroke-linecap="round"/>
+            <!-- feet -->
+            <path d="M37 100 L28 102" stroke="#1f7a6e" stroke-width="2" stroke-linecap="round"/>
+            <path d="M53 100 L62 102" stroke="#1f7a6e" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <span class="care-label">Post-Surgery Recovery</span>
+        <span class="care-link">Explore Care →</span>
+      </div>
+
+      <!-- 3. Memory & Dementia Care -->
+      <div class="care-card" onclick="openCareModal(this)" data-title="Memory &amp; Dementia Care" data-blurb="Specialized care for individuals living with Alzheimer's and other forms of dementia. Our caregivers provide structured support, safety, and meaningful engagement in a familiar home environment.">
+        <div class="care-illustration">
+          <svg viewBox="0 0 90 112" xmlns="http://www.w3.org/2000/svg" fill="none">
+            <!-- large head (front view) -->
+            <circle cx="45" cy="38" r="30" fill="#e8f5f3" stroke="#1f7a6e" stroke-width="2.5"/>
+            <!-- BRAIN inside (gold oval) -->
+            <ellipse cx="45" cy="35" rx="19" ry="17" fill="#f9f3e7" stroke="#b5892a" stroke-width="1.8"/>
+            <!-- brain top fold -->
+            <path d="M30 30 Q38 23 45 27 Q52 23 60 30" stroke="#b5892a" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+            <!-- brain bottom fold -->
+            <path d="M30 38 Q38 45 45 41 Q52 45 60 38" stroke="#b5892a" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+            <!-- center divider -->
+            <path d="M45 20 L45 50" stroke="#b5892a" stroke-width="1" fill="none" stroke-dasharray="2 2" stroke-linecap="round"/>
+            <!-- floating sparkle dots (memory) -->
+            <circle cx="16" cy="30" r="2.5" fill="#b5892a" opacity="0.5"/>
+            <circle cx="13" cy="42" r="1.8" fill="#b5892a" opacity="0.35"/>
+            <circle cx="74" cy="30" r="2.5" fill="#b5892a" opacity="0.5"/>
+            <circle cx="77" cy="42" r="1.8" fill="#b5892a" opacity="0.35"/>
+            <!-- neck -->
+            <rect x="38" y="68" width="14" height="12" rx="3" fill="#e8f5f3" stroke="#1f7a6e" stroke-width="2"/>
+            <!-- shoulders hint -->
+            <path d="M22 80 L68 80" stroke="#1f7a6e" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <span class="care-label">Memory &amp; Dementia Care</span>
+        <span class="care-link">Explore Care →</span>
+      </div>
+
+      <!-- 4. Mobility Support -->
+      <div class="care-card" onclick="openCareModal(this)" data-title="Mobility Support" data-blurb="Helping clients move safely and confidently throughout their day. From fall prevention to transfer assistance, we reduce risk while preserving independence.">
+        <div class="care-illustration">
+          <svg viewBox="0 0 90 112" xmlns="http://www.w3.org/2000/svg" fill="none">
+            <!-- WALKER FRAME (gold) drawn first -->
+            <path d="M10 52 L10 102" stroke="#b5892a" stroke-width="3" stroke-linecap="round"/>
+            <path d="M80 52 L80 102" stroke="#b5892a" stroke-width="3" stroke-linecap="round"/>
+            <path d="M10 52 L80 52" stroke="#b5892a" stroke-width="3" stroke-linecap="round"/>
+            <!-- walker feet (small angled legs) -->
+            <path d="M10 102 L16 110" stroke="#b5892a" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M10 102 L4 110" stroke="#b5892a" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M80 102 L86 110" stroke="#b5892a" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M80 102 L74 110" stroke="#b5892a" stroke-width="2.5" stroke-linecap="round"/>
+            <!-- FIGURE (teal) on top -->
+            <circle cx="45" cy="18" r="12" fill="#e8f5f3" stroke="#1f7a6e" stroke-width="2.5"/>
+            <path d="M45 30 L45 72" stroke="#1f7a6e" stroke-width="3" stroke-linecap="round"/>
+            <!-- arms reaching to walker handles -->
+            <path d="M45 46 L10 52" stroke="#1f7a6e" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M45 46 L80 52" stroke="#1f7a6e" stroke-width="2.5" stroke-linecap="round"/>
+            <!-- legs -->
+            <path d="M45 72 L38 98" stroke="#1f7a6e" stroke-width="3" stroke-linecap="round"/>
+            <path d="M45 72 L52 98" stroke="#1f7a6e" stroke-width="3" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <span class="care-label">Mobility Support</span>
+        <span class="care-link">Explore Care →</span>
+      </div>
+
+      <!-- 5. Chronic Illness Management -->
+      <div class="care-card" onclick="openCareModal(this)" data-title="Chronic Illness Management" data-blurb="Ongoing support for conditions like diabetes, heart disease, and more. We help manage daily routines, monitor wellness, and ensure consistent, reliable care at home.">
+        <div class="care-illustration">
+          <svg viewBox="0 0 90 112" xmlns="http://www.w3.org/2000/svg" fill="none">
+            <!-- head -->
+            <circle cx="45" cy="16" r="12" fill="#e8f5f3" stroke="#1f7a6e" stroke-width="2.5"/>
+            <!-- body -->
+            <path d="M45 28 L45 70" stroke="#1f7a6e" stroke-width="3" stroke-linecap="round"/>
+            <!-- shoulders -->
+            <path d="M26 40 L64 40" stroke="#1f7a6e" stroke-width="2.5" stroke-linecap="round"/>
+            <!-- torso outline (chest visible) -->
+            <path d="M26 40 L22 70 L68 70 L64 40" stroke="#1f7a6e" stroke-width="1.8" fill="#e8f5f3" fill-opacity="0.4"/>
+            <!-- arms -->
+            <path d="M26 40 L16 64" stroke="#1f7a6e" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M64 40 L74 64" stroke="#1f7a6e" stroke-width="2.5" stroke-linecap="round"/>
+            <!-- HEART (gold, glowing) -->
+            <path d="M45 50 C45 50 52 43 56 47 C60 51 56 57 45 65 C34 57 30 51 34 47 C38 43 45 50 45 50 Z" fill="#b5892a"/>
+            <!-- pulse / EKG line below -->
+            <path d="M20 80 L28 80 L33 72 L39 88 L45 76 L51 84 L56 80 L68 80" stroke="#b5892a" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            <!-- legs -->
+            <path d="M45 70 L38 100" stroke="#1f7a6e" stroke-width="3" stroke-linecap="round"/>
+            <path d="M45 70 L52 100" stroke="#1f7a6e" stroke-width="3" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <span class="care-label">Chronic Illness Management</span>
+        <span class="care-link">Explore Care →</span>
+      </div>
+
+      <!-- 6. Wound & Skin Care -->
+      <div class="care-card" onclick="openCareModal(this)" data-title="Wound &amp; Skin Care" data-blurb="Attentive care focused on healing, prevention, and comfort. Our team helps monitor and support proper wound care while reducing the risk of complications.">
+        <div class="care-illustration">
+          <svg viewBox="0 0 90 112" xmlns="http://www.w3.org/2000/svg" fill="none">
+            <!-- Arm shape (vertical forearm + hand) -->
+            <rect x="30" y="6" width="30" height="72" rx="15" fill="#e8f5f3" stroke="#1f7a6e" stroke-width="2.5"/>
+            <!-- hand/fist at bottom -->
+            <ellipse cx="45" cy="88" rx="16" ry="11" fill="#e8f5f3" stroke="#1f7a6e" stroke-width="2"/>
+            <!-- finger lines on hand -->
+            <path d="M34 84 Q36 92 38 96" stroke="#1f7a6e" stroke-width="1.2" stroke-linecap="round"/>
+            <path d="M45 86 L45 98" stroke="#1f7a6e" stroke-width="1.2" stroke-linecap="round"/>
+            <path d="M56 84 Q54 92 52 96" stroke="#1f7a6e" stroke-width="1.2" stroke-linecap="round"/>
+            <!-- BANDAGE wrapped around mid-forearm (gold) -->
+            <rect x="25" y="40" width="40" height="16" rx="4" fill="#f9f3e7" stroke="#b5892a" stroke-width="2"/>
+            <!-- bandage cross / plus sign -->
+            <line x1="45" y1="42" x2="45" y2="54" stroke="#b5892a" stroke-width="2.5" stroke-linecap="round"/>
+            <line x1="39" y1="48" x2="51" y2="48" stroke="#b5892a" stroke-width="2.5" stroke-linecap="round"/>
+            <!-- bandage edge stitching dots -->
+            <circle cx="28" cy="44" r="1.5" fill="#b5892a" opacity="0.4"/>
+            <circle cx="28" cy="52" r="1.5" fill="#b5892a" opacity="0.4"/>
+            <circle cx="62" cy="44" r="1.5" fill="#b5892a" opacity="0.4"/>
+            <circle cx="62" cy="52" r="1.5" fill="#b5892a" opacity="0.4"/>
+          </svg>
+        </div>
+        <span class="care-label">Wound &amp; Skin Care</span>
+        <span class="care-link">Explore Care →</span>
+      </div>
+
+      <!-- 7. Medication Management -->
+      <div class="care-card" onclick="openCareModal(this)" data-title="Medication Management" data-blurb="Stay on track with medications safely and accurately. We provide reminders, organization, and oversight to help prevent missed doses or errors.">
+        <div class="care-illustration">
+          <svg viewBox="0 0 90 112" xmlns="http://www.w3.org/2000/svg" fill="none">
+            <!-- bottle body -->
+            <rect x="20" y="34" width="50" height="66" rx="10" fill="#e8f5f3" stroke="#1f7a6e" stroke-width="2.5"/>
+            <!-- bottle neck -->
+            <rect x="30" y="20" width="30" height="16" rx="5" fill="#e8f5f3" stroke="#1f7a6e" stroke-width="2.5"/>
+            <!-- CAP (gold) -->
+            <rect x="26" y="8" width="38" height="14" rx="7" fill="#b5892a" stroke="#8a6520" stroke-width="1.5"/>
+            <!-- plus sign on cap -->
+            <line x1="45" y1="11" x2="45" y2="19" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+            <line x1="41" y1="15" x2="49" y2="15" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+            <!-- label background -->
+            <rect x="26" y="50" width="38" height="34" rx="5" fill="white" stroke="#1f7a6e" stroke-width="1.5" opacity="0.8"/>
+            <!-- PILLS shown on label -->
+            <ellipse cx="36" cy="60" rx="6" ry="3.5" fill="#b5892a" opacity="0.85"/>
+            <ellipse cx="54" cy="60" rx="6" ry="3.5" fill="#2a9d8f" opacity="0.8"/>
+            <ellipse cx="36" cy="72" rx="6" ry="3.5" fill="#2a9d8f" opacity="0.8"/>
+            <ellipse cx="54" cy="72" rx="6" ry="3.5" fill="#b5892a" opacity="0.85"/>
+            <!-- dividing line on each pill -->
+            <line x1="36" y1="60" x2="36" y2="60" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="30" y1="60" x2="42" y2="60" stroke="white" stroke-width="1" stroke-linecap="round"/>
+            <line x1="48" y1="60" x2="60" y2="60" stroke="white" stroke-width="1" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <span class="care-label">Medication Management</span>
+        <span class="care-link">Explore Care →</span>
+      </div>
+
+      <!-- 8. Companionship & Wellness -->
+      <div class="care-card" onclick="openCareModal(this)" data-title="Companionship &amp; Wellness" data-blurb="More than care—connection. We provide meaningful companionship, conversation, and engagement to support emotional well-being and overall quality of life.">
+        <div class="care-illustration">
+          <svg viewBox="0 0 90 112" xmlns="http://www.w3.org/2000/svg" fill="none">
+            <!-- FIGURE 1 - Caregiver (teal, left, slightly larger) -->
+            <circle cx="26" cy="18" r="13" fill="#e8f5f3" stroke="#1f7a6e" stroke-width="2.5"/>
+            <path d="M26 31 L26 74" stroke="#1f7a6e" stroke-width="3" stroke-linecap="round"/>
+            <path d="M10 44 L42 44" stroke="#1f7a6e" stroke-width="2.5" stroke-linecap="round"/>
+            <!-- left arm out -->
+            <path d="M10 44 L4 66" stroke="#1f7a6e" stroke-width="2.5" stroke-linecap="round"/>
+            <!-- right arm toward figure 2 -->
+            <path d="M42 44 L54 54" stroke="#1f7a6e" stroke-width="2.5" stroke-linecap="round"/>
+            <!-- legs -->
+            <path d="M26 74 L18 104" stroke="#1f7a6e" stroke-width="3" stroke-linecap="round"/>
+            <path d="M26 74 L34 104" stroke="#1f7a6e" stroke-width="3" stroke-linecap="round"/>
+
+            <!-- FIGURE 2 - Client (gold, right, slightly smaller) -->
+            <circle cx="64" cy="24" r="10" fill="#f9f3e7" stroke="#b5892a" stroke-width="2.5"/>
+            <path d="M64 34 L64 72" stroke="#b5892a" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M50 44 L78 44" stroke="#b5892a" stroke-width="2" stroke-linecap="round"/>
+            <!-- left arm reaching toward caregiver -->
+            <path d="M50 44 L44 58" stroke="#b5892a" stroke-width="2" stroke-linecap="round"/>
+            <!-- right arm -->
+            <path d="M78 44 L84 64" stroke="#b5892a" stroke-width="2" stroke-linecap="round"/>
+            <!-- legs -->
+            <path d="M64 72 L57 100" stroke="#b5892a" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M64 72 L71 100" stroke="#b5892a" stroke-width="2.5" stroke-linecap="round"/>
+
+            <!-- HEART between them (gold) -->
+            <path d="M47 52 C47 52 50 49 52 51 C54 53 52 56 47 59 C42 56 40 53 42 51 C44 49 47 52 47 52 Z" fill="#b5892a"/>
+          </svg>
+        </div>
+        <span class="care-label">Companionship &amp; Wellness</span>
+        <span class="care-link">Explore Care →</span>
+      </div>
+
+    </div>
+    <div class="care-cta">
+      <a href="#contact" class="btn btn-primary">Schedule a Free Consultation</a>
     </div>
   </div>
 </section>
